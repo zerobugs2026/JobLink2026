@@ -1,0 +1,243 @@
+/* Estilos específicos para el componente Encabezado */
+
+/* Variables CSS para Encabezado */
+:root {
+  --navbar-primary: #667eea;
+  --navbar-dark: #764ba2;
+  --navbar-text: #ffffff;
+  --offcanvas-bg: #f8fafc;
+  --nav-active: #667eea;
+  --nav-inactive: #4b5563;
+  --border-light: #e5e7eb;
+  --bg-light: #f3f4f6;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset para navbar */
+.navbar-custom {
+  background: white !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  min-height: 64px;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Toggler (menú hamburguesa) */
+.navbar-toggler-custom {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  color: white !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.navbar-toggler-custom:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar-toggler-custom:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Brand/Logo */
+.navbar-brand-custom {
+  color: #1f2937 !important;
+  font-weight: 700;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand-custom:hover {
+  color: #1f2937 !important;
+}
+
+.navbar-brand-custom .logo-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand-custom:hover .logo-placeholder {
+  transform: scale(1.05);
+}
+
+/* Navegación horizontal */
+.nav-link-custom {
+  color: #6b7280 !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0;
+  margin: 0;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.nav-link-custom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #667eea;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link-custom:hover {
+  color: #1f2937 !important;
+}
+
+.nav-link-custom:hover::after {
+  width: 80%;
+}
+
+.nav-link-custom.active {
+  color: #1f2937 !important;
+  font-weight: 600;
+}
+
+.nav-link-custom.active::after {
+  width: 80%;
+}
+
+/* Botón Iniciar Sesión */
+.btn-iniciar-sesion {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-iniciar-sesion:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Espaciado para navbar fijo */
+.navbar-spacer {
+  height: 64px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .navbar-custom {
+    min-height: 60px;
+  }
+  
+  .navbar-brand-custom {
+    font-size: 1.1rem;
+  }
+  
+  .navbar-brand-custom .logo-placeholder {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .nav-link-custom {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem;
+  }
+  
+  .btn-iniciar-sesion {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-spacer {
+    height: 60px;
+  }
+  
+  .navbar-custom {
+    min-height: 60px;
+  }
+  
+  .navbar-brand-custom span {
+    font-size: 1rem;
+  }
+  
+  .navbar-brand-custom .logo-placeholder {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+  }
+  
+  .nav-link-custom {
+    padding: 0.625rem 0.875rem !important;
+    font-size: 0.875rem;
+  }
+}
+
+/* Animaciones adicionales */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.offcanvas.show {
+  animation: slideInRight 0.3s ease;
+}
+
+/* Estados de enfoque accesibilidad */
+.nav-link-custom:focus-visible {
+  outline: 2px solid var(--nav-active);
+  outline-offset: 2px;
+}
+
+.support-btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Efecto de brillo en el navbar */
+.navbar-custom::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.8s ease;
+}
+
+.navbar-custom:hover::after {
+  left: 100%;
+}
