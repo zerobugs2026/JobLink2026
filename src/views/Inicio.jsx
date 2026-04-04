@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Inicio.css';
 
 // Hook personalizado para animaciones de scroll
@@ -36,6 +37,7 @@ const useScrollAnimation = () => {
 };
 
 const Inicio = () => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [activeSection, setActiveSection] = useState('top');
@@ -200,8 +202,8 @@ const Inicio = () => {
                   </li>
                   <li className="scroll-to-section">
                     <div className="main-red-button">
-                      <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>
-                        Contactar Ahora
+                      <a href="#" onClick={(e) => { e.preventDefault(); navigate('/login'); }}>
+                        Iniciar Sesión
                       </a>
                     </div>
                   </li>
