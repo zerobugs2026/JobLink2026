@@ -11,7 +11,7 @@ Based on Space Dynamic Template
 --------------------------------------------- */
 .login-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #faf5fe 0%, #f0e6f5 100%);
+  background: linear-gradient(135deg, #F5F5F5 0%, #e8e8e8 100%);
   display: flex;
   flex-direction: column;
 }
@@ -56,7 +56,7 @@ Based on Space Dynamic Template
 }
 
 .login-header .logo span {
-  color: #ff589e;
+  color: #16A34A;
 }
 
 /* ---------------------------------------------
@@ -180,7 +180,7 @@ Based on Space Dynamic Template
 .input-wrapper i {
   position: absolute;
   left: 15px;
-  color: #ff589e;
+  color: #16A34A;
   font-size: 16px;
 }
 
@@ -192,16 +192,16 @@ Based on Space Dynamic Template
   padding: 0 20px 0 45px;
   font-size: 14px;
   color: #2a2a2a;
-  background: #faf5fe;
+  background: #F5F5F5;
   transition: all 0.3s ease;
   outline: none;
   box-sizing: border-box;
 }
 
 .input-wrapper input:focus {
-  border-color: #ff589e;
+  border-color: #16A34A;
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(255, 88, 158, 0.1);
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
 }
 
 .input-wrapper input::placeholder {
@@ -233,12 +233,12 @@ Based on Space Dynamic Template
   height: 16px;
   margin-right: 8px;
   cursor: pointer;
-  accent-color: #ff589e;
+  accent-color: #16A34A;
 }
 
 .forgot-password {
   font-size: 13px;
-  color: #ff589e;
+  color: #1D4ED8;
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -254,7 +254,7 @@ Based on Space Dynamic Template
 .login-button {
   width: 100%;
   height: 50px;
-  background: linear-gradient(105deg, #826ee6 0%, #ff589e 100%);
+  background: linear-gradient(105deg, #16A34A 0%, #1D4ED8 100%);
   border: none;
   border-radius: 25px;
   color: #fff;
@@ -268,7 +268,7 @@ Based on Space Dynamic Template
 
 .login-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 88, 158, 0.3);
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
 }
 
 .login-button:disabled {
@@ -294,7 +294,7 @@ Based on Space Dynamic Template
 }
 
 .login-footer a {
-  color: #ff589e;
+  color: #1D4ED8;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
