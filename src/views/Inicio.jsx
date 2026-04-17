@@ -598,69 +598,68 @@ const Inicio = () => {
         </div>
       </div>
 
-      {/* Contact Section */}
-      <div id="contact" className="contact-us section">
+      {/* Contact Section - Nuevo Diseño */}
+      <section id="contact" className="contacto-nuevo">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-6 align-self-center">
-              <div 
-                id="contact-left"
-                className={`scroll-animate fade-in-left scroll-delay-1 ${
-                  visibleElements.has('contact-left') ? 'fade-in-left' : ''
-                }`}
-              >
-                <div className="section-heading">
-                  <h2>Contáctanos y Encuentra tu Próxima Oportunidad</h2>
-                  <p>Estamos aquí para ayudarte a conectar con el talento o la oportunidad que estás buscando. No dudes en escribirnos.</p>
-                  <div className="phone-info">
-                    <h4>Para cualquier consulta: <span><i className="fa fa-phone"></i> <a href="#">+1 (555) 123-4567</a></span></h4>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="row align-items-center">
+            {/* Columna Izquierda - Texto de Soporte */}
             <div className="col-lg-6">
-              <div 
-                id="contact-form"
-                className={`scroll-animate fade-in-right scroll-delay-1 ${
-                  visibleElements.has('contact-form') ? 'fade-in-right' : ''
-                }`}
-              >
-              <form id="contact" onSubmit={handleContactSubmit}>
-                <div className="row">
-                  <div className="col-lg-6">
-                    <fieldset>
-                      <input type="text" name="name" id="name" placeholder="Nombre" autoComplete="on" required />
-                    </fieldset>
+              <h2 className="contacto-titulo text-start">Servicio Técnico y Soporte</h2>
+              <p className="contacto-subtitulo text-start">¿Tienes algún problema o inconveniente? Nuestro equipo de soporte está listo para ayudarte. Envíanos tu consulta y te responderemos a la brevedad.</p>
+            </div>
+            
+            {/* Columna Derecha - Formulario */}
+            <div className="col-lg-6">
+              <div className="formulario-contacto">
+                <h3>Reporta tu problema:</h3>
+                <form onSubmit={handleContactSubmit}>
+                  <div className="row">
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <input 
+                          type="text" 
+                          name="nombre" 
+                          placeholder="Nombre" 
+                          required 
+                        />
+                      </div>
+                    </div>
+                    <div className="col-lg-6">
+                      <div className="form-group">
+                        <input 
+                          type="text" 
+                          name="apellido" 
+                          placeholder="Apellido" 
+                          required 
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="col-lg-6">
-                    <fieldset>
-                      <input type="text" name="surname" id="surname" placeholder="Apellido" autoComplete="on" required />
-                    </fieldset>
+                  <div className="form-group">
+                    <input 
+                      type="email" 
+                      name="email" 
+                      placeholder="Correo Electrónico" 
+                      required 
+                    />
                   </div>
-                  <div className="col-lg-12">
-                    <fieldset>
-                      <input type="email" name="email" id="email" placeholder="Tu Email" required />
-                    </fieldset>
+                  <div className="form-group">
+                    <textarea 
+                      name="descripcion" 
+                      placeholder="Describe el problema o inconveniente que tienes..." 
+                      rows="4" 
+                      required
+                    ></textarea>
                   </div>
-                  <div className="col-lg-12">
-                    <fieldset>
-                      <textarea name="message" className="form-control" id="message" placeholder="Tu Mensaje" required></textarea>
-                    </fieldset>
-                  </div>
-                  <div className="col-lg-12">
-                    <fieldset>
-                      <button type="submit" id="form-submit" className="main-button">Enviar Mensaje</button>
-                    </fieldset>
-                  </div>
-                </div>
-                <div className="contact-dec">
-                  <img src="/assets/contact-decoration.png" alt="" style={{maxWidth: '178px', height: 'auto'}} />
-                </div>
-              </form>
+                  <button type="submit" className="btn-enviar">
+                    <i className="fa fa-paper-plane"></i> Enviar Mensaje
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Footer */}
       <footer>
@@ -731,7 +730,7 @@ const Inicio = () => {
                   </div>
                   <div className="contact-info">
                     <p><i className="fa fa-envelope"></i> info@joblink.com</p>
-                    <p><i className="fa fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i className="fa fa-phone"></i> +505 **** - ****</p>
                   </div>
                 </div>
               </div>
@@ -755,7 +754,6 @@ const Inicio = () => {
           </div>
         </div>
       </footer>
-    </div>
     </div>
   );
 };

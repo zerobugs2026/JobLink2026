@@ -173,7 +173,7 @@
 .register-header p {
   font-size: 14px;
   color: #6b7280;
-  transition: opacity 0.3s;
+  line-height: 1.5;
 }
 
 /* Formulario */

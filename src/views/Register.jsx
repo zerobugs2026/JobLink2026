@@ -153,7 +153,7 @@ const Register = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       const user = userCredential.user;
       
-      console.log('Usuario creado en Auth:', user.uid);
+      console.log('Usuario creado exitosamente:', user.uid);
       
       // Guardar datos adicionales en Firestore
       await setDoc(doc(db, 'users', user.uid), {
@@ -166,8 +166,10 @@ const Register = () => {
       
       console.log('Datos guardados en Firestore:', { name: formData.name, type: mode });
       
-      alert('Cuenta creada exitosamente');
-      navigate('/login');
+      // Redirigir al login después de un registro exitoso
+      setTimeout(() => {
+        navigate('/login');
+      }, 1500);
     } catch (err) {
       console.error('Error al crear usuario:', err);
       
