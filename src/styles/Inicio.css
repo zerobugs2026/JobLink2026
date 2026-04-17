@@ -53,6 +53,16 @@ figure, header, nav, section, article, aside, footer, figcaption {
   clear: both;
 }
 
+/* Compensar header fijo en scroll de anclajes - Ajustado para centrar secciones */
+section[id],
+#about,
+#services,
+#portfolio,
+#blog,
+#contact {
+  scroll-margin-top: 120px;
+}
+
 /* ---- .grid-item ---- */
 
 .grid-sizer,
@@ -175,18 +185,18 @@ body {
 }
 
 .page-section {
-  margin-top: 120px;
+  margin-top: 80px;
 }
 
 .section-heading h2 {
-  font-size: 30px;
-  text-transform: capitalize;
+  font-size: 32px;
+  text-transform: uppercase;
   color: #2a2a2a;
   font-weight: 700;
-  letter-spacing: 0.25px;
   position: relative;
   z-index: 2;
-  line-height: 44px;
+  line-height: 40px;
+  margin-bottom: 40px;
 }
 
 .section-heading h2 em {
@@ -895,7 +905,7 @@ Banner Style - Enhanced
 
 .main-banner {
   background: linear-gradient(135deg, #16A34A 0%, #1D4ED8 100%);
-  padding: 226px 0px 120px 0px;
+  padding: 140px 0px 100px 0px;
   position: relative;
   overflow: hidden;
 }
@@ -1032,6 +1042,9 @@ About Us Style - Enhanced
 
 #about {
   margin-top: 0px;
+  min-height: auto;
+  display: flex;
+  align-items: center;
 }
 
 .about-us {
@@ -1039,7 +1052,7 @@ About Us Style - Enhanced
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  padding: 140px 0px 120px 0px;
+  padding: 60px 0px 40px 0px;
   position: relative;
 }
 
@@ -1120,8 +1133,11 @@ Services Style - Enhanced
 
 .our-services {
   margin-top: 0px;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  min-height: auto;
+  display: flex;
+  align-items: center;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   position: relative;
   overflow: hidden;
@@ -1240,17 +1256,20 @@ Portfolio - Enhanced
 */
 
 .our-portfolio {
-  padding-top: 120px;
-  padding-bottom: 60px;
+  padding-top: 60px;
+  padding-bottom: 40px;
   margin-top: 0px;
   margin-bottom: 0px;
+  min-height: auto;
+  display: flex;
+  align-items: center;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 .our-portfolio .section-heading h2 {
   text-align: center;
   margin: 0px 90px 0px 90px;
-  margin-bottom: 120px;
+  margin-bottom: 40px;
   position: relative;
   z-index: 1;
 }
@@ -1338,7 +1357,11 @@ Blog - Enhanced
 .our-blog {
   position: relative;
   margin-top: 0px;
-  padding-top: 80px;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  min-height: auto;
+  display: flex;
+  align-items: center;
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
 }
 
@@ -1492,9 +1515,12 @@ Contacto Nuevo Diseño
 .contacto-nuevo {
   background: linear-gradient(135deg, #003366 0%, #00509d 100%);
   color: #ffffff;
-  padding: 80px 0px;
+  padding: 60px 0px 40px 0px;
   text-align: center;
   position: relative;
+  min-height: auto;
+  display: flex;
+  align-items: center;
 }
 
 .contacto-nuevo::before {

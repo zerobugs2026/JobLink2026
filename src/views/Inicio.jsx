@@ -43,6 +43,9 @@ const Inicio = () => {
   const [activeSection, setActiveSection] = useState('top');
   const [isLoaded, setIsLoaded] = useState(false);
   const visibleElements = useScrollAnimation();
+  
+  // Flag para prevenir que el scroll listener sobrescriba la selección manual
+  const isManualClick = useRef(false);
 
   useEffect(() => {
     // Simulate page loading
@@ -68,10 +71,15 @@ const Inicio = () => {
       }
     };
 
-    // Handle active section highlighting
+    // Handle active section highlighting - solo durante scroll manual, no durante clic
     const handleScrollForActiveSection = () => {
-      const scrollPos = window.scrollY;
+      // Si es un clic manual, no sobrescribir la selección
+      if (isManualClick.current) return;
+      
+      const scrollPos = window.scrollY + 200; // Offset para detectar la sección centrada en pantalla
       const sections = ['top', 'about', 'services', 'portfolio', 'blog', 'contact'];
+      
+      let currentSection = 'top';
       
       sections.forEach(sectionId => {
         const element = document.getElementById(sectionId);
@@ -79,11 +87,14 @@ const Inicio = () => {
           const top = element.offsetTop;
           const height = element.offsetHeight;
           
-          if (scrollPos >= top - 100 && scrollPos < top + height - 100) {
-            setActiveSection(sectionId);
+          // Detectar si el centro de la pantalla está dentro de esta sección
+          if (scrollPos >= top && scrollPos < top + height) {
+            currentSection = sectionId;
           }
         }
       });
+      
+      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -98,8 +109,21 @@ const Inicio = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      isManualClick.current = true; // Marcar que es clic manual
+      const headerOffset = 120; // Altura del header + margen para centrar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'auto' // Scroll instantáneo sin animación
+      });
       setIsMenuActive(false);
+      
+      // Resetear el flag después de un momento
+      setTimeout(() => {
+        isManualClick.current = false;
+      }, 100);
     }
   };
 
@@ -150,7 +174,12 @@ const Inicio = () => {
                     <a 
                       href="#top" 
                       className={activeSection === 'top' ? 'active' : ''}
-                      onClick={(e) => { e.preventDefault(); scrollToSection('top'); }}
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation();
+                        setActiveSection('top');
+                        scrollToSection('top'); 
+                      }}
                     >
                       Inicio
                     </a>
@@ -159,7 +188,12 @@ const Inicio = () => {
                     <a 
                       href="#about" 
                       className={activeSection === 'about' ? 'active' : ''}
-                      onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation();
+                        setActiveSection('about');
+                        scrollToSection('about'); 
+                      }}
                     >
                       Acerca de
                     </a>
@@ -168,7 +202,12 @@ const Inicio = () => {
                     <a 
                       href="#services" 
                       className={activeSection === 'services' ? 'active' : ''}
-                      onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation();
+                        setActiveSection('services');
+                        scrollToSection('services'); 
+                      }}
                     >
                       Servicios
                     </a>
@@ -177,7 +216,12 @@ const Inicio = () => {
                     <a 
                       href="#portfolio" 
                       className={activeSection === 'portfolio' ? 'active' : ''}
-                      onClick={(e) => { e.preventDefault(); scrollToSection('portfolio'); }}
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation();
+                        setActiveSection('portfolio');
+                        scrollToSection('portfolio'); 
+                      }}
                     >
                       Portafolio
                     </a>
@@ -186,7 +230,12 @@ const Inicio = () => {
                     <a 
                       href="#blog" 
                       className={activeSection === 'blog' ? 'active' : ''}
-                      onClick={(e) => { e.preventDefault(); scrollToSection('blog'); }}
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation();
+                        setActiveSection('blog');
+                        scrollToSection('blog'); 
+                      }}
                     >
                       Blog
                     </a>
@@ -195,7 +244,12 @@ const Inicio = () => {
                     <a 
                       href="#contact" 
                       className={activeSection === 'contact' ? 'active' : ''}
-                      onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation();
+                        setActiveSection('contact');
+                        scrollToSection('contact'); 
+                      }}
                     >
                       Contáctanos
                     </a>
