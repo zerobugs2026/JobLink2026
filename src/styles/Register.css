@@ -256,6 +256,29 @@
   color: #6b7280;
 }
 
+/* Estados de error en campos */
+.form-field.has-error .input-wrapper {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.form-field.has-error .input-wrapper:focus-within {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+}
+
+.input-error {
+  color: #dc2626;
+}
+
+.field-error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 6px;
+  margin-left: 4px;
+  line-height: 1.4;
+}
+
 /* Términos */
 .terms-section {
   padding-top: 5px;
@@ -285,11 +308,26 @@
   font-size: 12px;
   margin-top: 1px;
   transition: all 0.2s;
+  background: white;
+  cursor: pointer;
 }
 
-.custom-checkbox input:checked + .checkmark {
+.checkmark.checked {
   background: var(--active-color);
   border-color: var(--active-color);
+}
+
+.custom-checkbox.has-error .checkmark {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.terms-error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-left: 28px;
+  line-height: 1.4;
 }
 
 .terms-text {

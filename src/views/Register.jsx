@@ -65,18 +65,88 @@ const Register = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [acceptedTerms, setAcceptedTerms] = useState(false); // Estado para checkbox de términos
+  const [termsError, setTermsError] = useState(''); // Error de validación de términos
+  
+  // Estados para errores de validación de cada campo
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    // Limpiar error del campo cuando el usuario escribe
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' });
+    }
+  };
+
+  // Función para validar el formulario
+  const validateForm = () => {
+    const newErrors = { name: '', email: '', password: '' };
+    let isValid = true;
+
+    // Validar nombre
+    if (!formData.name.trim()) {
+      newErrors.name = mode === 'empresa' 
+        ? 'El nombre de la empresa es obligatorio' 
+        : 'El nombre completo es obligatorio';
+      isValid = false;
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Debe tener al menos 2 caracteres';
+      isValid = false;
+    }
+
+    // Validar email
+    if (!formData.email.trim()) {
+      newErrors.email = 'El correo electrónico es obligatorio';
+      isValid = false;
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = 'Ingresa un correo electrónico válido';
+        isValid = false;
+      }
+    }
+
+    // Validar contraseña
+    if (!formData.password) {
+      newErrors.password = 'La contraseña es obligatoria';
+      isValid = false;
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     setError('');
+    setTermsError('');
+    
+    // Validar todos los campos
+    const isFormValid = validateForm();
+    
+    // Validar que se hayan aceptado los términos
+    if (!acceptedTerms) {
+      setTermsError('Debes aceptar los Términos de Servicio y la Política de Privacidad para continuar.');
+    }
+    
+    // Si hay errores, no continuar
+    if (!isFormValid || !acceptedTerms) {
+      return;
+    }
+    
+    setIsLoading(true);
     
     try {
       // Crear usuario en Firebase Auth
@@ -181,10 +251,10 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="register-form">
           
           {/* Nombre */}
-          <div className="form-field">
+          <div className={`form-field ${errors.name ? 'has-error' : ''}`}>
             <label htmlFor="name">{isEmpresa ? 'Nombre de la Empresa' : 'Nombre Completo'}</label>
             <div className="input-wrapper">
-              <div className="field-icon" style={{ color: activeColor }}>
+              <div className="field-icon" style={{ color: errors.name ? '#dc2626' : activeColor }}>
                 {isEmpresa ? <BuildingsIcon /> : <UserIcon />}
               </div>
               <input 
@@ -194,16 +264,17 @@ const Register = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder={isEmpresa ? 'Tech Solutions S.A.' : 'Juan Pérez'}
-                required
+                className={errors.name ? 'input-error' : ''}
               />
             </div>
+            {errors.name && <div className="field-error">{errors.name}</div>}
           </div>
 
           {/* Email */}
-          <div className="form-field">
+          <div className={`form-field ${errors.email ? 'has-error' : ''}`}>
             <label htmlFor="email">Correo Electrónico</label>
             <div className="input-wrapper">
-              <div className="field-icon" style={{ color: activeColor }}>
+              <div className="field-icon" style={{ color: errors.email ? '#dc2626' : activeColor }}>
                 <EnvelopeIcon />
               </div>
               <input 
@@ -213,16 +284,17 @@ const Register = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="tu@correo.com"
-                required
+                className={errors.email ? 'input-error' : ''}
               />
             </div>
+            {errors.email && <div className="field-error">{errors.email}</div>}
           </div>
 
           {/* Contraseña */}
-          <div className="form-field">
+          <div className={`form-field ${errors.password ? 'has-error' : ''}`}>
             <label htmlFor="password">Contraseña</label>
             <div className="input-wrapper">
-              <div className="field-icon" style={{ color: activeColor }}>
+              <div className="field-icon" style={{ color: errors.password ? '#dc2626' : activeColor }}>
                 <LockIcon />
               </div>
               <input 
@@ -231,8 +303,8 @@ const Register = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Mínimo 8 caracteres"
-                required
+                placeholder="Mínimo 6 caracteres"
+                className={errors.password ? 'input-error' : ''}
               />
               <button 
                 type="button" 
@@ -242,27 +314,40 @@ const Register = () => {
                 {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
               </button>
             </div>
+            {errors.password && <div className="field-error">{errors.password}</div>}
           </div>
 
           {/* Términos */}
           <div className="terms-section">
-            <label className="custom-checkbox">
-              <input type="checkbox" required />
-              <div className="checkmark" style={{ backgroundColor: activeColor, borderColor: activeColor }}>
-                <CheckIcon />
+            <label className={`custom-checkbox ${termsError ? 'has-error' : ''}`}>
+              <input 
+                type="checkbox" 
+                checked={acceptedTerms}
+                onChange={(e) => {
+                  setAcceptedTerms(e.target.checked);
+                  if (e.target.checked) setTermsError('');
+                }}
+              />
+              <div className={`checkmark ${acceptedTerms ? 'checked' : ''}`}>
+                {acceptedTerms && <CheckIcon />}
               </div>
               <span className="terms-text">
                 Acepto los <a href="#" style={{ color: activeColor }}>Términos de Servicio</a> y la <a href="#" style={{ color: activeColor }}>Política de Privacidad</a>
               </span>
             </label>
+            {termsError && <div className="terms-error">{termsError}</div>}
           </div>
 
           {/* Botón */}
           <button 
             type="submit" 
             className="submit-btn"
-            style={{ backgroundColor: activeColor, boxShadow: `0 8px 25px ${activeColor}50` }}
-            disabled={isLoading}
+            style={{ 
+              backgroundColor: activeColor, 
+              boxShadow: `0 8px 25px ${activeColor}50`,
+              opacity: acceptedTerms ? 1 : 0.5
+            }}
+            disabled={isLoading || !acceptedTerms}
           >
             <span>{isLoading ? 'Creando cuenta...' : 'Comenzar ahora'}</span>
             <SparkleIcon />
