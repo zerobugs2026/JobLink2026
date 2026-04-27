@@ -1,0 +1,431 @@
+/* Register Modern - Estilos modernos para el formulario de registro */
+
+.register-modern-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f7f0 0%, #d4edda 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-modern-container {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 800px;
+  overflow: hidden;
+  position: relative;
+}
+
+.register-modern-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+}
+
+.register-modern-content {
+  padding: 2.5rem 2rem;
+}
+
+/* Header y Logo */
+.register-modern-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.register-modern-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1d4ed8;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.register-modern-logo-icon {
+  background: #2563eb;
+  color: white;
+  padding: 0.375rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle Switch */
+.register-modern-toggle {
+  background: #f3f4f6;
+  padding: 0.25rem;
+  border-radius: 12px;
+  display: flex;
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 1.5rem;
+}
+
+.register-modern-toggle-btn {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: #6b7280;
+}
+
+.register-modern-toggle-btn.active {
+  background: white;
+  color: #2563eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.register-modern-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.register-modern-subtitle {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Formulario Grid */
+.register-modern-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.register-modern-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .register-modern-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* Campos del formulario */
+.register-modern-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.register-modern-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.register-modern-required {
+  color: #ef4444;
+}
+
+.register-modern-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.register-modern-input-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.register-modern-input-icon.optional {
+  color: #d1d5db;
+}
+
+.register-modern-input {
+  width: 100%;
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.625rem 1rem 0.625rem 2.5rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.register-modern-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.register-modern-input.error {
+  border-color: #ef4444;
+}
+
+.register-modern-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.register-modern-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Botón mostrar contraseña */
+.register-modern-toggle-password {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.register-modern-toggle-password:hover {
+  color: #6b7280;
+}
+
+/* Mensajes de error */
+.register-modern-error {
+  color: #ef4444;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+/* Checkbox términos */
+.register-modern-terms {
+  padding-top: 0.5rem;
+}
+
+.register-modern-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.register-modern-checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.register-modern-checkbox input {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0;
+}
+
+.register-modern-checkbox input:checked {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.register-modern-checkbox-check {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-modern-checkbox input:checked + .register-modern-checkbox-check {
+  opacity: 1;
+}
+
+.register-modern-terms-text {
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.register-modern-terms-text a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-modern-terms-text a:hover {
+  text-decoration: underline;
+}
+
+/* Botón submit */
+.register-modern-submit {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.register-modern-submit:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 15px 20px -3px rgba(37, 99, 235, 0.35);
+}
+
+.register-modern-submit:active {
+  transform: scale(0.99);
+}
+
+.register-modern-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Link login */
+.register-modern-login-link {
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-top: 1.5rem;
+}
+
+.register-modern-login-link a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.register-modern-login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Mensaje de éxito */
+.register-modern-success {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #166534;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Spinner */
+.register-modern-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Modo empresa */
+.register-modern-page.empresa-mode .register-modern-container::before {
+  background: linear-gradient(90deg, #16a34a, #15803d);
+}
+
+.register-modern-page.empresa-mode .register-modern-logo {
+  color: #16a34a;
+}
+
+.register-modern-page.empresa-mode .register-modern-logo-icon {
+  background: #16a34a;
+}
+
+.register-modern-page.empresa-mode .register-modern-toggle-btn.active {
+  color: #16a34a;
+}
+
+.register-modern-page.empresa-mode .register-modern-input:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.register-modern-page.empresa-mode .register-modern-terms-text a,
+.register-modern-page.empresa-mode .register-modern-login-link a {
+  color: #16a34a;
+}
+
+.register-modern-page.empresa-mode .register-modern-submit {
+  background: #16a34a;
+  box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.3);
+}
+
+.register-modern-page.empresa-mode .register-modern-submit:hover {
+  background: #15803d;
+  box-shadow: 0 15px 20px -3px rgba(22, 163, 74, 0.35);
+}
+
+.register-modern-page.empresa-mode .register-modern-checkbox input:checked {
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
+/* Campos de ancho completo */
+.register-modern-field.full-width {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 768px) {
+  .register-modern-field.full-width {
+    grid-column: 1 / -1;
+  }
+}
