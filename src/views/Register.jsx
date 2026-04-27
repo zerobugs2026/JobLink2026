@@ -75,57 +75,62 @@ const Register = () => {
     password: ''
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-    // Limpiar error del campo cuando el usuario escribe
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
-    }
+  const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+  const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
+
+  const getPasswordStrength = (pwd) => {
+    if (!pwd) return null;
+    const hasMin = pwd.length >= 8;
+    const hasUpper = /[A-Z]/.test(pwd);
+    const hasNumber = /[0-9]/.test(pwd);
+    const score = [hasMin, hasUpper, hasNumber].filter(Boolean).length;
+    if (score === 3) return 'strong';
+    if (score === 2) return 'medium';
+    return 'weak';
   };
 
-  // Función para validar el formulario
+  const passwordStrength = getPasswordStrength(formData.password);
+
+  const validateField = (name, value) => {
+    if (name === 'name') {
+      if (!value.trim()) return mode === 'empresa' ? 'El nombre de la empresa es obligatorio.' : 'El nombre completo es obligatorio.';
+      if (value.trim().length < 2) return 'Debe tener al menos 2 caracteres.';
+      if (value.trim().length > 50) return 'No puede superar los 50 caracteres.';
+      if (!nameRegex.test(value.trim())) return 'Solo se permiten letras y espacios.';
+    }
+    if (name === 'email') {
+      if (!value.trim()) return 'El correo electrónico es obligatorio.';
+      if (!emailRegex.test(value.trim())) return 'Ingresa un correo electrónico válido.';
+    }
+    if (name === 'password') {
+      if (!value) return 'La contraseña es obligatoria.';
+      if (value.length < 8) return 'Debe tener al menos 8 caracteres.';
+      if (!/[A-Z]/.test(value)) return 'Debe incluir al menos una letra mayúscula.';
+      if (!/[0-9]/.test(value)) return 'Debe incluir al menos un número.';
+    }
+    return '';
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    if (errors[name]) setErrors({ ...errors, [name]: '' });
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const msg = validateField(name, value);
+    if (msg) setErrors(prev => ({ ...prev, [name]: msg }));
+  };
+
   const validateForm = () => {
-    const newErrors = { name: '', email: '', password: '' };
-    let isValid = true;
-
-    // Validar nombre
-    if (!formData.name.trim()) {
-      newErrors.name = mode === 'empresa' 
-        ? 'El nombre de la empresa es obligatorio' 
-        : 'El nombre completo es obligatorio';
-      isValid = false;
-    } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'Debe tener al menos 2 caracteres';
-      isValid = false;
-    }
-
-    // Validar email
-    if (!formData.email.trim()) {
-      newErrors.email = 'El correo electrónico es obligatorio';
-      isValid = false;
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        newErrors.email = 'Ingresa un correo electrónico válido';
-        isValid = false;
-      }
-    }
-
-    // Validar contraseña
-    if (!formData.password) {
-      newErrors.password = 'La contraseña es obligatoria';
-      isValid = false;
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
-      isValid = false;
-    }
-
+    const newErrors = {
+      name: validateField('name', formData.name),
+      email: validateField('email', formData.email),
+      password: validateField('password', formData.password),
+    };
     setErrors(newErrors);
-    return isValid;
+    return !Object.values(newErrors).some(Boolean);
   };
 
   const handleSubmit = async (e) => {
@@ -173,14 +178,13 @@ const Register = () => {
     } catch (err) {
       console.error('Error al crear usuario:', err);
       
-      // Manejar errores específicos de Firebase
-      let errorMessage = 'Error al crear la cuenta';
+      let errorMessage = 'Error al crear la cuenta. Intenta de nuevo.';
       if (err.code === 'auth/email-already-in-use') {
-        errorMessage = 'Este correo ya está registrado';
-      } else if (err.code === 'auth/weak-password') {
-        errorMessage = 'La contraseña debe tener al menos 6 caracteres';
+        errorMessage = 'Este correo ya está registrado. Intenta iniciar sesión.';
       } else if (err.code === 'auth/invalid-email') {
-        errorMessage = 'Correo electrónico inválido';
+        errorMessage = 'El correo electrónico no es válido.';
+      } else if (err.code === 'auth/network-request-failed') {
+        errorMessage = 'Sin conexión a internet. Verifica tu red.';
       }
       
       setError(errorMessage);
@@ -215,7 +219,9 @@ const Register = () => {
           <div className="logo-icon" style={{ backgroundColor: activeColor }}>
             <SparkleIcon />
           </div>
-          <span className="logo-text">JobLink</span>
+          <span className="logo-text">
+            <span style={{ color: '#03a4ed' }}>JOB</span><span style={{ color: '#16A34A' }}>LINK</span>
+          </span>
         </div>
 
         {/* Toggle Switch */}
@@ -242,8 +248,11 @@ const Register = () => {
 
         {/* Encabezado */}
         <div className="register-header">
-          <h1>{isEmpresa ? 'Registra tu Empresa 🏢' : 'Crea tu cuenta 🚀'}</h1>
-          <p>{isEmpresa ? 'Encuentra el talento ideal para tu equipo.' : 'Únete a la comunidad más grande de profesionales.'}</p>
+          <div className="register-header-icon" style={{ background: `${activeColor}18`, color: activeColor }}>
+            {isEmpresa ? <BuildingsIcon /> : <SparkleIcon />}
+          </div>
+          <h1>{isEmpresa ? 'Registra tu Empresa' : 'Crea tu cuenta'}</h1>
+          <p>{isEmpresa ? 'Encuentra el talento ideal para tu equipo.' : 'Tu próximo empleo empieza aquí.'}</p>
         </div>
 
         {/* Mensaje de error */}
@@ -259,13 +268,14 @@ const Register = () => {
               <div className="field-icon" style={{ color: errors.name ? '#dc2626' : activeColor }}>
                 {isEmpresa ? <BuildingsIcon /> : <UserIcon />}
               </div>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder={isEmpresa ? 'Tech Solutions S.A.' : 'Juan Pérez'}
+                onBlur={handleBlur}
+                placeholder={isEmpresa ? 'Tech Solutions S.A.' : 'Emily Espinoza'}
                 className={errors.name ? 'input-error' : ''}
               />
             </div>
@@ -279,12 +289,13 @@ const Register = () => {
               <div className="field-icon" style={{ color: errors.email ? '#dc2626' : activeColor }}>
                 <EnvelopeIcon />
               </div>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 placeholder="tu@correo.com"
                 className={errors.email ? 'input-error' : ''}
               />
@@ -299,23 +310,36 @@ const Register = () => {
               <div className="field-icon" style={{ color: errors.password ? '#dc2626' : activeColor }}>
                 <LockIcon />
               </div>
-              <input 
+              <input
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Mínimo 6 caracteres"
+                onBlur={handleBlur}
+                placeholder="Mínimo 8 caracteres"
                 className={errors.password ? 'input-error' : ''}
               />
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="toggle-password"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
               </button>
             </div>
+            {formData.password && !errors.password && (
+              <div className="password-strength">
+                <div className="strength-bars">
+                  <span className={`strength-bar ${passwordStrength ? 'active' : ''}`} style={{ background: passwordStrength === 'weak' ? '#ef4444' : passwordStrength === 'medium' ? '#f59e0b' : '#16A34A' }}></span>
+                  <span className={`strength-bar ${passwordStrength === 'medium' || passwordStrength === 'strong' ? 'active' : ''}`} style={{ background: passwordStrength === 'medium' ? '#f59e0b' : passwordStrength === 'strong' ? '#16A34A' : '#e5e7eb' }}></span>
+                  <span className={`strength-bar ${passwordStrength === 'strong' ? 'active' : ''}`} style={{ background: passwordStrength === 'strong' ? '#16A34A' : '#e5e7eb' }}></span>
+                </div>
+                <span className="strength-label" style={{ color: passwordStrength === 'weak' ? '#ef4444' : passwordStrength === 'medium' ? '#f59e0b' : '#16A34A' }}>
+                  {passwordStrength === 'weak' ? 'Contraseña débil' : passwordStrength === 'medium' ? 'Contraseña media' : 'Contraseña fuerte'}
+                </span>
+              </div>
+            )}
             {errors.password && <div className="field-error">{errors.password}</div>}
           </div>
 

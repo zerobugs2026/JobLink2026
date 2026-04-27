@@ -108,8 +108,7 @@
 
 .logo-text {
   font-size: 26px;
-  font-weight: 700;
-  color: #1f2937;
+  font-weight: 800;
   letter-spacing: -0.5px;
 }
 
@@ -160,6 +159,17 @@
 .register-header {
   text-align: center;
   margin-bottom: 30px;
+}
+
+.register-header-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 .register-header h1 {
@@ -398,6 +408,34 @@
 .login-link a:hover {
   opacity: 0.8;
   text-decoration: underline;
+}
+
+/* Indicador de fortaleza de contraseña */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.strength-bars {
+  display: flex;
+  gap: 4px;
+}
+
+.strength-bar {
+  display: block;
+  width: 48px;
+  height: 4px;
+  border-radius: 2px;
+  background: #e5e7eb;
+  transition: background 0.3s ease;
+}
+
+.strength-label {
+  font-size: 12px;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 /* Responsive */

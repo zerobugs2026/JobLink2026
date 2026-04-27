@@ -1,0 +1,424 @@
+/* JobLink - Editar Perfil */
+
+.editar-perfil-container {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+/* ---- HEADER ---- */
+.editar-header-banner {
+  padding: 0;
+}
+
+.editar-header-usuario {
+  background: linear-gradient(135deg, #16A34A 0%, #1D4ED8 100%);
+}
+
+.editar-header-empresa {
+  background: linear-gradient(135deg, #1D4ED8 0%, #16A34A 100%);
+}
+
+.editar-header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 28px 24px 36px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.btn-cancelar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-cancelar:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-1px);
+}
+
+.editar-header-titulo h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.editar-header-titulo p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+}
+
+/* ---- BODY ---- */
+.editar-body {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  padding: 24px 24px 0;
+}
+
+/* ---- FORM ---- */
+.editar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---- ALERTAS ---- */
+.editar-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.editar-alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16A34A;
+}
+
+.editar-alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+/* ---- SECCIÓN ---- */
+.editar-seccion {
+  background: white;
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  border: 1px solid #e5e7eb;
+}
+
+.editar-seccion-titulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.seccion-dot {
+  width: 6px;
+  height: 24px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.editar-seccion-titulo h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* ---- CAMPOS ---- */
+.editar-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-full {
+  grid-column: 1 / -1;
+}
+
+.campo-grupo label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.campo-hint {
+  font-weight: 400;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.campo-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #f8fafc;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.campo-input-wrap:focus-within {
+  border-color: #1D4ED8;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(29,78,216,0.08);
+}
+
+.campo-input-wrap svg {
+  flex-shrink: 0;
+  margin-left: 14px;
+  opacity: 0.7;
+}
+
+.campo-input-wrap input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 13px 14px;
+  font-size: 14px;
+  color: #1f2937;
+  outline: none;
+  font-family: inherit;
+}
+
+.campo-input-wrap input::placeholder {
+  color: #9ca3af;
+}
+
+.campo-grupo textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f8fafc;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #1f2937;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  min-height: 120px;
+}
+
+.campo-grupo textarea:focus {
+  border-color: #1D4ED8;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(29,78,216,0.08);
+}
+
+.campo-grupo textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* ---- PREVIEW HABILIDADES ---- */
+.habilidades-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.habilidad-preview-tag {
+  background: linear-gradient(135deg, rgba(22,163,74,0.1) 0%, rgba(29,78,216,0.1) 100%);
+  color: #1D4ED8;
+  border: 1px solid rgba(29,78,216,0.2);
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ---- LISTAS DINÁMICAS (experiencia / educación) ---- */
+.lista-dinamica {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.item-dinamico {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 20px 22px;
+  background: #f8fafc;
+}
+
+.item-dinamico-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.item-numero {
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.btn-eliminar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.btn-eliminar-item:hover {
+  background: #fef2f2;
+}
+
+.item-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.btn-agregar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1.5px dashed;
+  border-radius: 12px;
+  padding: 11px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-agregar-item:hover {
+  background: rgba(22, 163, 74, 0.05);
+}
+
+/* ---- ACTIONS ---- */
+.editar-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-bottom: 20px;
+}
+
+.btn-cancelar-form {
+  padding: 13px 28px;
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  background: white;
+  color: #6b7280;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-cancelar-form:hover {
+  border-color: #9ca3af;
+  color: #374151;
+}
+
+.btn-guardar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 32px;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(29,78,216,0.3);
+  font-family: inherit;
+}
+
+.btn-guardar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(29,78,216,0.4);
+}
+
+.btn-guardar:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ---- SPINNER ---- */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .editar-header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .editar-campos,
+  .item-campos {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-full {
+    grid-column: 1;
+  }
+
+  .editar-seccion {
+    padding: 20px 18px;
+  }
+
+  .editar-actions {
+    flex-direction: column;
+  }
+
+  .btn-cancelar-form,
+  .btn-guardar {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .editar-body {
+    padding: 16px 16px 0;
+  }
+}
