@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../database/firebaseconfig.jsx';
 import '../styles/Login.css';
@@ -45,6 +45,33 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({ email: '', password: '' });
+
+  const [showReset, setShowReset] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetMsg, setResetMsg] = useState({ type: '', text: '' });
+
+  const handleReset = async (e) => {
+    e.preventDefault();
+    if (!resetEmail.trim() || !emailRegex.test(resetEmail.trim())) {
+      setResetMsg({ type: 'error', text: 'Ingresa un correo electrónico válido.' });
+      return;
+    }
+    setResetLoading(true);
+    setResetMsg({ type: '', text: '' });
+    try {
+      await sendPasswordResetEmail(auth, resetEmail.trim().toLowerCase());
+      setResetMsg({ type: 'success', text: 'Correo enviado. Revisa tu bandeja de entrada y la carpeta de spam.' });
+      setResetEmail('');
+    } catch (err) {
+      const msg = err.code === 'auth/user-not-found'
+        ? 'No existe una cuenta con ese correo.'
+        : 'Error al enviar el correo. Intenta de nuevo.';
+      setResetMsg({ type: 'error', text: msg });
+    } finally {
+      setResetLoading(false);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -210,7 +237,13 @@ const Login = () => {
             <div className="lf-group">
               <div className="lf-label-row">
                 <label htmlFor="password">Contraseña</label>
-                <a href="#" className="lf-forgot">¿Olvidaste tu contraseña?</a>
+                <button
+                  type="button"
+                  className="lf-forgot"
+                  onClick={() => { setShowReset(true); setResetMsg({ type: '', text: '' }); }}
+                >
+                  ¿Olvidaste tu contraseña?
+                </button>
               </div>
               <div className={`lf-input-wrap ${fieldErrors.password ? 'lf-input-error' : ''}`}>
                 <span className="lf-icon"><LockIcon /></span>
@@ -249,6 +282,44 @@ const Login = () => {
             </button>
 
           </form>
+
+          {showReset && (
+            <div className="reset-panel">
+              <div className="reset-panel-header">
+                <h3>Recuperar contraseña</h3>
+                <button
+                  type="button"
+                  className="reset-close"
+                  onClick={() => { setShowReset(false); setResetMsg({ type: '', text: '' }); setResetEmail(''); }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+                  </svg>
+                </button>
+              </div>
+              <p className="reset-desc">Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.</p>
+              {resetMsg.text && (
+                <div className={`reset-msg reset-msg-${resetMsg.type}`}>{resetMsg.text}</div>
+              )}
+              <form onSubmit={handleReset} className="reset-form">
+                <div className="lf-input-wrap">
+                  <span className="lf-icon"><EnvelopeIcon /></span>
+                  <input
+                    type="email"
+                    value={resetEmail}
+                    onChange={e => { setResetEmail(e.target.value); setResetMsg({ type: '', text: '' }); }}
+                    placeholder="correo@ejemplo.com"
+                    autoComplete="email"
+                  />
+                </div>
+                <button type="submit" className="login-submit-btn" disabled={resetLoading}>
+                  {resetLoading ? (
+                    <><span className="login-spinner"></span>Enviando...</>
+                  ) : 'Enviar enlace'}
+                </button>
+              </form>
+            </div>
+          )}
 
           <div className="login-divider">
             <span></span>
