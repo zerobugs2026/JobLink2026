@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobLink - Vista de Visualización de Usuario</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#16A34A',
+                            blue: '#1D4ED8',
+                            slate: '#F8FAFC',
+                            dark: '#0F172A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+        }
+        
+        .bento-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-card:hover {
+            border-color: #1D4ED8;
+            box-shadow: 0 25px 50px -12px rgba(29, 78, 216, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .search-container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .status-pill {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
+        }
+
+        /* Scroll personalizado elegante */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navbar Minimalista -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between search-container p-3 rounded-[2rem] shadow-sm">
+            <div class="flex items-center gap-10">
+                <!-- Logo -->
+                <div class="flex items-center gap-2 pl-4">
+                    <div class="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center text-white">
+                        <i class="ph-fill ph-sparkle text-lg"></i>
+                    </div>
+                    <span class="text-lg font-black tracking-tighter">JobLink</span>
+                </div>
+                
+                <!-- Links de navegación -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#" class="text-sm font-bold text-brand-blue">Mi Dashboard</a>
+                    <a href="#" class="text-sm font-semibold text-slate-500 hover:text-brand-blue transition-colors">Mi Perfil</a>
+                    <a href="#" class="text-sm font-semibold text-slate-500 hover:text-brand-blue transition-colors">Postulaciones</a>
+                    <a href="#" class="text-sm font-semibold text-slate-500 hover:text-brand-blue transition-colors">Mensajes</a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+                    <i class="ph ph-bell text-xl"></i>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+                    <i class="ph ph-gear text-xl"></i>
+                </button>
+                <div class="w-10 h-10 rounded-full border-2 border-white p-0.5 overflow-hidden">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Byron" alt="Avatar" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        
+        <!-- Sección de Perfil de Usuario -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Tarjeta de Perfil Principal -->
+            <div class="profile-card p-8 text-white">
+                <div class="flex items-center gap-6 mb-6">
+                    <div class="w-20 h-20 rounded-full border-4 border-white/30 p-1 overflow-hidden">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Byron" alt="Avatar" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-black">Byron Martínez</h1>
+                        <p class="text-white/80 font-medium">Desarrollador Full Stack</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <i class="ph-fill ph-map-pin text-sm"></i>
+                            <span class="text-sm text-white/70">Ciudad de México, MX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white/10 p-4 rounded-xl">
+                        <p class="text-xs font-bold text-white/70 uppercase">Experiencia</p>
+                        <p class="text-xl font-black">5+ Años</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-xl">
+                        <p class="text-xs font-bold text-white/70 uppercase">Proyectos</p>
+                        <p class="text-xl font-black">23</p>
+                    </div>
+                </div>
+
+                <button class="w-full py-3 bg-white text-purple-600 rounded-xl font-bold hover:bg-white/90 transition-all">
+                    Editar Perfil
+                </button>
+            </div>
+            
+            <!-- Tarjeta de Estadísticas -->
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 flex items-center justify-between shadow-sm">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase">Visibilidad del Perfil</p>
+                    <p class="text-2xl font-black text-brand-green">94% Excelente</p>
+                    <p class="text-xs text-slate-500 mt-1">Tu perfil es muy atractivo para reclutadores</p>
+                </div>
+                <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-brand-green">
+                    <i class="ph-fill ph-chart-line-up text-2xl"></i>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Popularidad -->
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 flex items-center justify-between shadow-sm">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase">Ranking Popular</p>
+                    <p class="text-2xl font-black text-brand-blue">Top 15%</p>
+                    <p class="text-xs text-slate-500 mt-1">Entre los candidatos más buscados</p>
+                </div>
+                <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-brand-blue">
+                    <i class="ph-fill ph-trophy text-2xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Columna de Actividad y Logros -->
+            <aside class="lg:w-1/4 space-y-6">
+                <!-- Actividad Reciente -->
+                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100">
+                    <h3 class="text-lg font-black mb-6">Actividad Reciente</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="ph-fill ph-check text-xs text-green-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold">Postulación enviada</p>
+                                <p class="text-xs text-slate-500">Google Cloud • Hace 2h</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="ph-fill ph-eye text-xs text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold">Perfil visualizado</p>
+                                <p class="text-xs text-slate-500">Microsoft • Hace 5h</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="ph-fill ph-star text-xs text-purple-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold">Nuevo logro</p>
+                                <p class="text-xs text-slate-500">Perfil Completo • Ayer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logros y Badges -->
+                <div class="bg-gradient-to-br from-brand-blue to-brand-dark p-8 rounded-[2.5rem] text-white">
+                    <h4 class="text-sm font-bold text-brand-green mb-4 tracking-widest uppercase">Tus Logros</h4>
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <i class="ph-fill ph-medal text-xl"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <i class="ph-fill ph-star text-xl"></i>
+                        </div>
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <i class="ph-fill ph-rocket text-xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-white/70">3 de 10 logros desbloqueados</p>
+                </div>
+            </aside>
+
+            <!-- Oportunidades Populares -->
+            <div class="lg:flex-1">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-black">Oportunidades Populares para Ti</h2>
+                    <div class="flex gap-2">
+                        <button class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-blue hover:border-brand-blue transition-all">
+                            <i class="ph ph-list text-xl"></i>
+                        </button>
+                        <button class="w-10 h-10 rounded-full bg-brand-blue flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                            <i class="ph ph-squares-four text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Feed de Oportunidades -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Oportunidad 1 -->
+                    <div class="bento-card p-8 flex flex-col justify-between min-h-[320px]">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 p-2 overflow-hidden">
+                                    <i class="ph-fill ph-google-logo text-3xl text-blue-600"></i>
+                                </div>
+                                <span class="status-pill bg-brand-green/10 text-brand-green">98% Match</span>
+                            </div>
+                            <h3 class="text-xl font-extrabold text-slate-900 mb-1 leading-tight">Lead React Architecture</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-4">Google Cloud • California, US</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase">NextJS</span>
+                                <span class="text-[10px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase">Microfrontends</span>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-slate-50 pt-6">
+                                <p class="text-lg font-black">$160k<span class="text-xs font-medium text-slate-400">/año</span></p>
+                                <button class="px-6 py-3 bg-brand-blue text-white rounded-xl font-bold text-sm hover:scale-105 transition-transform">Postular</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Oportunidad 2 -->
+                    <div class="bento-card p-8 flex flex-col justify-between min-h-[320px]">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 p-2 overflow-hidden">
+                                    <i class="ph-fill ph-apple-logo text-3xl text-slate-900"></i>
+                                </div>
+                                <span class="status-pill bg-blue-50 text-brand-blue">Urgente</span>
+                            </div>
+                            <h3 class="text-xl font-extrabold text-slate-900 mb-1 leading-tight">Senior UX Engineer</h3>
+                            <p class="text-sm font-bold text-slate-400 mb-4">Apple • Remote (Latam)</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase">Figma to Code</span>
+                                <span class="text-[10px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase">A11Y</span>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-slate-50 pt-6">
+                                <p class="text-lg font-black">$95k<span class="text-xs font-medium text-slate-400">/año</span></p>
+                                <button class="px-6 py-3 bg-brand-blue text-white rounded-xl font-bold text-sm hover:scale-105 transition-transform">Postular</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Oportunidad Destacada (Ancha) -->
+                    <div class="bento-card p-8 md:col-span-2 flex flex-col md:flex-row gap-8 items-center bg-gradient-to-br from-white to-brand-light">
+                        <div class="w-20 h-20 bg-indigo-600 rounded-3xl flex items-center justify-center text-white text-4xl shadow-xl shadow-indigo-200 shrink-0">
+                            <i class="ph ph-lightning"></i>
+                        </div>
+                        <div class="flex-1 space-y-2">
+                            <div class="flex items-center gap-3">
+                                <h3 class="text-2xl font-black">Fullstack Engineer (Startup Growth)</h3>
+                                <span class="status-pill bg-orange-100 text-orange-600">Stock Options</span>
+                            </div>
+                            <p class="text-slate-500 font-medium">Stripe • Remote Europe • Hace 2 horas</p>
+                            <p class="text-sm text-slate-400 line-clamp-2">Sé parte del equipo fundacional para nuevos mercados en Europa. Buscamos expertos en Node.js y React con mentalidad de producto.</p>
+                        </div>
+                        <div class="shrink-0 text-center md:text-right">
+                            <p class="text-2xl font-black text-brand-dark mb-4">$110k - $140k</p>
+                            <button class="px-10 py-4 bg-brand-green text-white rounded-2xl font-extrabold shadow-lg shadow-green-500/20 hover:-translate-y-1 transition-all">Aplicación Rápida</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Animaciones suaves al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.bento-card, .profile-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+
+            // Simulación de notificaciones en tiempo real
+            setTimeout(() => {
+                const notification = document.querySelector('.ph-bell').parentElement;
+                notification.classList.add('animate-pulse');
+                notification.innerHTML += '<span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

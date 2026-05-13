@@ -40,6 +40,7 @@ const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
 
 const Login = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -145,7 +146,7 @@ const Login = () => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         localStorage.setItem('userData', JSON.stringify(userData));
-        navigate(userData.type === 'empresa' ? '/perfil-empresa' : '/perfil');
+        navigate('/home-user');
       } else {
         navigate('/');
       }

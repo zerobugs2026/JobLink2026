@@ -38,6 +38,7 @@ const useScrollAnimation = () => {
 
 const Inicio = () => {
   const navigate = useNavigate();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [activeSection, setActiveSection] = useState('top');
@@ -169,7 +170,7 @@ const Inicio = () => {
                 </a>
                 
                 {/* Menu */}
-                <ul className={`nav ${isMenuActive ? 'active' : ''}`} style={{ display: isMenuActive ? 'block' : 'none' }}>
+                <ul className={`nav ${isMenuActive ? 'active' : ''}`}>
                   <li className="scroll-to-section">
                     <a 
                       href="#top" 

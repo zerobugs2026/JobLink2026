@@ -51,25 +51,27 @@ const Encabezado = () => {
           />
           
           <Navbar.Collapse id="navbar-nav">
-            <Nav className="mx-auto">
-              {navItems.map((item) => (
-                <Nav.Link
-                  key={item.path}
-                  onClick={() => handleNavigate(item.path)}
-                  className={`nav-link-custom ${location.pathname === item.path ? 'active' : ''}`}
-                >
-                  {item.label}
-                </Nav.Link>
-              ))}
-            </Nav>
-            
-            <Button 
-              onClick={() => handleNavigate("/login")}
-              className="btn-iniciar-sesion"
-            >
-              Iniciar sesión
-              <i className="bi bi-arrow-right ms-2"></i>
-            </Button>
+            <div className="d-flex align-items-center gap-3">
+              <Nav className="me-auto">
+                {navItems.map((item) => (
+                  <Nav.Link
+                    key={item.path}
+                    onClick={() => handleNavigate(item.path)}
+                    className={`nav-link-custom ${location.pathname === item.path ? 'active' : ''}`}
+                  >
+                    {item.label}
+                  </Nav.Link>
+                ))}
+              </Nav>
+              
+              <Button 
+                onClick={() => handleNavigate("/login")}
+                className="btn-iniciar-sesion"
+              >
+                Iniciar sesión
+                <i className="bi bi-arrow-right ms-2"></i>
+              </Button>
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

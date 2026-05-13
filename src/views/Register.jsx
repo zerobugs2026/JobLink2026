@@ -68,7 +68,7 @@ const AlertCircleIcon = ({ size = 12 }) => (
 
 const Register = () => {
   const navigate = useNavigate();
-  
+
   // Estado para alternar la visibilidad de las contraseñas
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -210,9 +210,9 @@ const Register = () => {
       
       setIsSubmitted(true);
       
-      // Redirigir al login después de un registro exitoso
+      // Redirigir a Home_User después de un registro exitoso
       setTimeout(() => {
-        navigate('/login');
+        navigate('/home-user');
       }, 2000);
     } catch (err) {
       console.error('Error al crear usuario:', err);

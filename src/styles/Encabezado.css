@@ -25,6 +25,35 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
+/* Asegurar que el collapse esté alineado verticalmente */
+.navbar-custom .navbar-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Asegurar que el Container tenga altura completa */
+.navbar-custom .container,
+.navbar-custom .container-fluid {
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+/* Alinear la navegación horizontalmente */
+.navbar-custom .navbar-collapse .nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+/* Alinear el botón con los items de navegación */
+.navbar-custom .navbar-collapse .btn-iniciar-sesion {
+  margin-left: 1rem;
+  align-self: center;
+}
+
 /* Toggler (menú hamburguesa) */
 .navbar-toggler-custom {
   border-color: rgba(255, 255, 255, 0.5) !important;
@@ -90,6 +119,9 @@
   text-decoration: none;
   position: relative;
   font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .nav-link-custom::after {
