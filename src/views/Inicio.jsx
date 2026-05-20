@@ -265,9 +265,14 @@ const Inicio = () => {
                 </ul>
                 
                 {/* Mobile Menu Trigger */}
-                <a className={`menu-trigger ${isMenuActive ? 'active' : ''}`} onClick={toggleMenu}>
+                <button
+                  type="button"
+                  className={`menu-trigger ${isMenuActive ? 'active' : ''}`}
+                  onClick={toggleMenu}
+                  aria-label={isMenuActive ? 'Cerrar menú' : 'Abrir menú'}
+                >
                   <span>Menu</span>
-                </a>
+                </button>
               </nav>
             </div>
           </div>
