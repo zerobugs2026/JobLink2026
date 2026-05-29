@@ -385,6 +385,18 @@
 }
 
 /* ---- RESPONSIVE ---- */
+@media (max-width: 992px) {
+  .empresa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .empresa-body,
+  .empresa-identidad {
+    padding-left: var(--rwd-page-padding, 16px);
+    padding-right: var(--rwd-page-padding, 16px);
+  }
+}
+
 @media (max-width: 768px) {
   .empresa-identidad {
     flex-direction: column;

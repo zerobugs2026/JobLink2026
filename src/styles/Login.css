@@ -523,6 +523,12 @@
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width: 992px) {
+  .login-form-panel {
+    padding: 36px 20px;
+  }
+}
+
 @media (max-width: 900px) {
   .login-page {
     flex-direction: column;
@@ -543,6 +549,16 @@
   }
 }
 
+@media (max-width: 768px) {
+  .login-form-panel {
+    padding: 32px 16px;
+  }
+
+  .login-form-header h2 {
+    font-size: 26px;
+  }
+}
+
 @media (max-width: 480px) {
   .login-form-inner {
     max-width: 100%;
@@ -550,5 +566,9 @@
 
   .login-form-header h2 {
     font-size: 24px;
+  }
+
+  .login-form-panel {
+    padding: 28px 12px;
   }
 }

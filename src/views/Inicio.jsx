@@ -43,7 +43,12 @@ const Inicio = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [activeSection, setActiveSection] = useState('top');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [revealedId, setRevealedId] = useState(null);
   const visibleElements = useScrollAnimation();
+
+  const toggleReveal = (id) => {
+    setRevealedId((prev) => (prev === id ? null : id));
+  };
   
   // Flag para prevenir que el scroll listener sobrescriba la selección manual
   const isManualClick = useRef(false);
@@ -78,7 +83,7 @@ const Inicio = () => {
       if (isManualClick.current) return;
       
       const scrollPos = window.scrollY + 200; // Offset para detectar la sección centrada en pantalla
-      const sections = ['top', 'about', 'services', 'portfolio', 'blog', 'contact'];
+      const sections = ['top', 'about', 'services', 'portfolio', 'contact'];
       
       let currentSection = 'top';
       
@@ -159,122 +164,107 @@ const Inicio = () => {
       </div>
 
       {/* Header */}
-      <header className={`header-area header-sticky animate-slideInDown animate-fill-forwards ${isScrolled ? 'background-header' : ''}`}>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <nav className="main-nav">
-                {/* Logo */}
-                <a href="#top" className="logo" onClick={(e) => { e.preventDefault(); scrollToSection('top'); }}>
-                  <h4>Job<span>Link</span></h4>
-                </a>
-                
-                {/* Menu */}
-                <ul className={`nav ${isMenuActive ? 'active' : ''}`}>
-                  <li className="scroll-to-section">
-                    <a 
-                      href="#top" 
-                      className={activeSection === 'top' ? 'active' : ''}
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        setActiveSection('top');
-                        scrollToSection('top'); 
-                      }}
-                    >
-                      Inicio
-                    </a>
-                  </li>
-                  <li className="scroll-to-section">
-                    <a 
-                      href="#about" 
-                      className={activeSection === 'about' ? 'active' : ''}
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        setActiveSection('about');
-                        scrollToSection('about'); 
-                      }}
-                    >
-                      Acerca de
-                    </a>
-                  </li>
-                  <li className="scroll-to-section">
-                    <a 
-                      href="#services" 
-                      className={activeSection === 'services' ? 'active' : ''}
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        setActiveSection('services');
-                        scrollToSection('services'); 
-                      }}
-                    >
-                      Servicios
-                    </a>
-                  </li>
-                  <li className="scroll-to-section">
-                    <a 
-                      href="#portfolio" 
-                      className={activeSection === 'portfolio' ? 'active' : ''}
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        setActiveSection('portfolio');
-                        scrollToSection('portfolio'); 
-                      }}
-                    >
-                      Portafolio
-                    </a>
-                  </li>
-                  <li className="scroll-to-section">
-                    <a 
-                      href="#blog" 
-                      className={activeSection === 'blog' ? 'active' : ''}
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        setActiveSection('blog');
-                        scrollToSection('blog'); 
-                      }}
-                    >
-                      Blog
-                    </a>
-                  </li>
-                  <li className="scroll-to-section">
-                    <a 
-                      href="#contact" 
-                      className={activeSection === 'contact' ? 'active' : ''}
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        setActiveSection('contact');
-                        scrollToSection('contact'); 
-                      }}
-                    >
-                      Contáctanos
-                    </a>
-                  </li>
-                  <li className="scroll-to-section">
-                    <div className="main-red-button">
-                      <a href="#" onClick={(e) => { e.preventDefault(); navigate('/login'); }}>
-                        Iniciar Sesión
-                      </a>
-                    </div>
-                  </li>
-                </ul>
-                
-                {/* Mobile Menu Trigger */}
-                <button
-                  type="button"
-                  className={`menu-trigger ${isMenuActive ? 'active' : ''}`}
-                  onClick={toggleMenu}
-                  aria-label={isMenuActive ? 'Cerrar menú' : 'Abrir menú'}
-                >
-                  <span>Menu</span>
-                </button>
-              </nav>
-            </div>
+      <header className={`header-area ${isScrolled ? 'background-header' : ''}`}>
+        <div className="header-bar">
+          <a
+            href="#top"
+            className="header-logo"
+            onClick={(e) => { e.preventDefault(); scrollToSection('top'); }}
+          >
+            <span className="logo-job">JOB</span>
+            <span className="logo-link">LINK</span>
+          </a>
+
+          <div className="header-nav-right">
+          <ul className={`header-menu ${isMenuActive ? 'active' : ''}`}>
+            <li>
+              <a
+                href="#top"
+                className={activeSection === 'top' ? 'active' : ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setActiveSection('top');
+                  scrollToSection('top');
+                }}
+              >
+                Inicio
+              </a>
+            </li>
+            <li>
+              <a
+                href="#about"
+                className={activeSection === 'about' ? 'active' : ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setActiveSection('about');
+                  scrollToSection('about');
+                }}
+              >
+                Acerca de
+              </a>
+            </li>
+            <li>
+              <a
+                href="#services"
+                className={activeSection === 'services' ? 'active' : ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setActiveSection('services');
+                  scrollToSection('services');
+                }}
+              >
+                Servicios
+              </a>
+            </li>
+            <li>
+              <a
+                href="#portfolio"
+                className={activeSection === 'portfolio' ? 'active' : ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setActiveSection('portfolio');
+                  scrollToSection('portfolio');
+                }}
+              >
+                Portafolio
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contact"
+                className={activeSection === 'contact' ? 'active' : ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setActiveSection('contact');
+                  scrollToSection('contact');
+                }}
+              >
+                Contáctanos
+              </a>
+            </li>
+          </ul>
+
+          <button
+            type="button"
+            className="header-cta"
+            onClick={() => navigate('/login')}
+          >
+            Iniciar Sesión
+          </button>
+
+          <button
+            type="button"
+            className={`menu-trigger ${isMenuActive ? 'active' : ''}`}
+            onClick={toggleMenu}
+            aria-label={isMenuActive ? 'Cerrar menú' : 'Abrir menú'}
+          >
+            <span>Menu</span>
+          </button>
           </div>
         </div>
       </header>
@@ -285,7 +275,7 @@ const Inicio = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="row">
-                <div className="col-lg-6 align-self-center">
+                <div className="col-12 col-lg-6 align-self-center">
                   <div 
                     id="banner-text"
                     className={`left-content header-text scroll-animate fade-in-left scroll-delay-2 ${
@@ -312,14 +302,14 @@ const Inicio = () => {
                     </form>
                   </div>
                 </div>
-                <div className="col-lg-6">
+                <div className="col-lg-6 d-none d-md-block">
                   <div 
                     id="banner-image"
                     className={`right-image scroll-animate fade-in-right ${
                       visibleElements.has('banner-image') ? 'fade-in-right' : ''
                     }`}
                   >
-                    <img src="/assets/banner-right-image.png" alt="conexión laboral" style={{maxWidth: '100%', height: 'auto', objectFit: 'contain'}} />
+                    <img src="/assets/banner-right-image.png" alt="conexión laboral" className="section-hero-img" />
                   </div>
                 </div>
               </div>
@@ -331,26 +321,30 @@ const Inicio = () => {
       {/* About Section - Explorar por tipo de perfil */}
       <div id="about" className="about-us section">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-4">
+          <div className="row about-us-row">
+            <div className="col-lg-4 d-none d-md-block">
               <div 
                 id="about-image"
                 className={`left-image scroll-animate fade-in scroll-delay-1 ${
                   visibleElements.has('about-image') ? 'fade-in' : ''
                 }`}
               >
-                <img src="/assets/about-left-image.png" alt="explorar perfiles" style={{maxWidth: '100%', height: 'auto', objectFit: 'contain'}} />
+                <img src="/assets/about-left-image.png" alt="explorar perfiles" className="section-side-img" />
               </div>
             </div>
-            <div className="col-lg-8 align-self-center">
-              <div className="services">
-                <div className="row">
-                  <div className="col-lg-6">
+            <div className="col-12 col-lg-8 align-self-center">
+              <div className="services about-profiles">
+                <div className="row about-profiles-grid g-4 justify-content-center">
+                  <div className="col-sm-6 col-lg-6">
                     <div 
                       id="service-1"
-                      className={`item scroll-animate fade-in-up scroll-delay-2 ${
+                      className={`item tap-reveal scroll-animate fade-in-up scroll-delay-2 ${
                         visibleElements.has('service-1') ? 'fade-in-up' : ''
-                      }`}
+                      } ${revealedId === 'service-1' ? 'is-revealed' : ''}`}
+                      onClick={() => toggleReveal('service-1')}
+                      onKeyDown={(e) => e.key === 'Enter' && toggleReveal('service-1')}
+                      role="button"
+                      tabIndex={0}
                     >
                       <div className="icon">
                         <img src="/assets/service-icon-01.png" alt="profesionales" style={{maxWidth: '60px', height: 'auto'}} />
@@ -361,12 +355,16 @@ const Inicio = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-sm-6 col-lg-6">
                     <div 
                       id="service-2"
-                      className={`item scroll-animate fade-in-up scroll-delay-3 ${
+                      className={`item tap-reveal scroll-animate fade-in-up scroll-delay-3 ${
                         visibleElements.has('service-2') ? 'fade-in-up' : ''
-                      }`}
+                      } ${revealedId === 'service-2' ? 'is-revealed' : ''}`}
+                      onClick={() => toggleReveal('service-2')}
+                      onKeyDown={(e) => e.key === 'Enter' && toggleReveal('service-2')}
+                      role="button"
+                      tabIndex={0}
                     >
                       <div className="icon">
                         <img src="/assets/service-icon-02.png" alt="técnicos" style={{maxWidth: '60px', height: 'auto'}} />
@@ -377,12 +375,16 @@ const Inicio = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-sm-6 col-lg-6">
                     <div 
                       id="service-3"
-                      className={`item scroll-animate fade-in-up scroll-delay-4 ${
+                      className={`item tap-reveal scroll-animate fade-in-up scroll-delay-4 ${
                         visibleElements.has('service-3') ? 'fade-in-up' : ''
-                      }`}
+                      } ${revealedId === 'service-3' ? 'is-revealed' : ''}`}
+                      onClick={() => toggleReveal('service-3')}
+                      onKeyDown={(e) => e.key === 'Enter' && toggleReveal('service-3')}
+                      role="button"
+                      tabIndex={0}
                     >
                       <div className="icon">
                         <img src="/assets/service-icon-03.png" alt="primer empleo" style={{maxWidth: '60px', height: 'auto'}} />
@@ -393,12 +395,16 @@ const Inicio = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6">
+                  <div className="col-sm-6 col-lg-6">
                     <div 
                       id="service-4"
-                      className={`item scroll-animate fade-in-up scroll-delay-5 ${
+                      className={`item tap-reveal scroll-animate fade-in-up scroll-delay-5 ${
                         visibleElements.has('service-4') ? 'fade-in-up' : ''
-                      }`}
+                      } ${revealedId === 'service-4' ? 'is-revealed' : ''}`}
+                      onClick={() => toggleReveal('service-4')}
+                      onKeyDown={(e) => e.key === 'Enter' && toggleReveal('service-4')}
+                      role="button"
+                      tabIndex={0}
                     >
                       <div className="icon">
                         <img src="/assets/service-icon-04.png" alt="empresas" style={{maxWidth: '60px', height: 'auto'}} />
@@ -427,7 +433,7 @@ const Inicio = () => {
                   visibleElements.has('services-image') ? 'fade-in-left' : ''
                 }`}
               >
-                <img src="/assets/services-left-image.png" alt="cómo funciona" style={{maxWidth: '100%', height: 'auto', objectFit: 'contain'}} />
+                <img src="/assets/services-left-image.png" alt="cómo funciona" className="section-side-img" />
               </div>
             </div>
             <div className="col-lg-6">
@@ -488,12 +494,15 @@ const Inicio = () => {
           </div>
           <div className="row">
             <div className="col-lg-3 col-sm-6">
-              <a href="#">
-                <div 
+              <div 
                   id="portfolio-1"
-                  className={`item scroll-animate portfolio-item bounce-in-up scroll-delay-2 ${
+                  className={`item scroll-animate portfolio-item tap-reveal bounce-in-up scroll-delay-2 ${
                     visibleElements.has('portfolio-1') ? 'bounce-in-up' : ''
-                  }`}
+                  } ${revealedId === 'portfolio-1' ? 'is-revealed' : ''}`}
+                  onClick={() => toggleReveal('portfolio-1')}
+                  onKeyDown={(e) => e.key === 'Enter' && toggleReveal('portfolio-1')}
+                  role="button"
+                  tabIndex={0}
                 >
                   <div className="hidden-content">
                     <h4>Empleo Digno</h4>
@@ -503,15 +512,17 @@ const Inicio = () => {
                     <img src="/assets/portfolio-image.png" alt="empleo digno" style={{maxWidth: '100px', height: 'auto', borderRadius: '50%'}} />
                   </div>
                 </div>
-              </a>
             </div>
             <div className="col-lg-3 col-sm-6">
-              <a href="#">
-                <div 
+              <div 
                   id="portfolio-2"
-                  className={`item scroll-animate portfolio-item bounce-in-up scroll-delay-3 ${
+                  className={`item scroll-animate portfolio-item tap-reveal bounce-in-up scroll-delay-3 ${
                     visibleElements.has('portfolio-2') ? 'bounce-in-up' : ''
-                  }`}
+                  } ${revealedId === 'portfolio-2' ? 'is-revealed' : ''}`}
+                  onClick={() => toggleReveal('portfolio-2')}
+                  onKeyDown={(e) => e.key === 'Enter' && toggleReveal('portfolio-2')}
+                  role="button"
+                  tabIndex={0}
                 >
                   <div className="hidden-content">
                     <h4>Crecimiento Profesional</h4>
@@ -521,15 +532,17 @@ const Inicio = () => {
                     <img src="/assets/portfolio-image.png" alt="crecimiento" style={{maxWidth: '100px', height: 'auto', borderRadius: '50%'}} />
                   </div>
                 </div>
-              </a>
             </div>
             <div className="col-lg-3 col-sm-6">
-              <a href="#">
-                <div 
+              <div 
                   id="portfolio-3"
-                  className={`item scroll-animate portfolio-item bounce-in-up scroll-delay-4 ${
+                  className={`item scroll-animate portfolio-item tap-reveal bounce-in-up scroll-delay-4 ${
                     visibleElements.has('portfolio-3') ? 'bounce-in-up' : ''
-                  }`}
+                  } ${revealedId === 'portfolio-3' ? 'is-revealed' : ''}`}
+                  onClick={() => toggleReveal('portfolio-3')}
+                  onKeyDown={(e) => e.key === 'Enter' && toggleReveal('portfolio-3')}
+                  role="button"
+                  tabIndex={0}
                 >
                   <div className="hidden-content">
                     <h4>Networking</h4>
@@ -539,15 +552,17 @@ const Inicio = () => {
                     <img src="/assets/portfolio-image.png" alt="networking" style={{maxWidth: '100px', height: 'auto', borderRadius: '50%'}} />
                   </div>
                 </div>
-              </a>
             </div>
             <div className="col-lg-3 col-sm-6">
-              <a href="#">
-                <div 
+              <div 
                   id="portfolio-4"
-                  className={`item scroll-animate portfolio-item bounce-in-up scroll-delay-5 ${
+                  className={`item scroll-animate portfolio-item tap-reveal bounce-in-up scroll-delay-5 ${
                     visibleElements.has('portfolio-4') ? 'bounce-in-up' : ''
-                  }`}
+                  } ${revealedId === 'portfolio-4' ? 'is-revealed' : ''}`}
+                  onClick={() => toggleReveal('portfolio-4')}
+                  onKeyDown={(e) => e.key === 'Enter' && toggleReveal('portfolio-4')}
+                  role="button"
+                  tabIndex={0}
                 >
                   <div className="hidden-content">
                     <h4>Éxito Garantizado</h4>
@@ -557,102 +572,6 @@ const Inicio = () => {
                     <img src="/assets/portfolio-image.png" alt="éxito" style={{maxWidth: '100px', height: 'auto', borderRadius: '50%'}} />
                   </div>
                 </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Blog Section - Novedades */}
-      <div id="blog" className="our-blog section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div 
-                id="blog-title"
-                className={`section-heading scroll-animate fade-in-down scroll-delay-1 ${
-                  visibleElements.has('blog-title') ? 'fade-in-down' : ''
-                }`}
-              >
-                <h2>Últimas <em>Novedades</em> en nuestro <span>Blog</span></h2>
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div 
-                id="blog-dec"
-                className={`top-dec scroll-animate fade-in-down scroll-delay-1 ${
-                  visibleElements.has('blog-dec') ? 'fade-in-down' : ''
-                }`}
-              >
-                <img src="/assets/blog-dec.png" alt="" style={{maxWidth: '270px', height: 'auto'}} />
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-6">
-              <div 
-                id="blog-main"
-                className={`left-image scroll-animate fade-in-up scroll-delay-2 ${
-                  visibleElements.has('blog-main') ? 'fade-in-up' : ''
-                }`}
-              >
-                <a href="#"><img src="/assets/big-blog-thumb.jpg" alt="Consejos laborales" style={{maxWidth: '100%', height: 'auto', borderRadius: '20px'}} /></a>
-                <div className="info">
-                  <div className="inner-content">
-                    <ul>
-                      <li><i className="fa fa-calendar"></i> 25 Mar 2026</li>
-                      <li><i className="fa fa-users"></i> JobLink</li>
-                      <li><i className="fa fa-folder"></i> Consejos</li>
-                    </ul>
-                    <a href="#"><h4>Consejos para tu Búsqueda Laboral</h4></a>
-                    <p>Descubre las mejores estrategias para encontrar el trabajo perfecto en el mercado actual.</p>
-                    <div className="main-blue-button">
-                      <a href="#">Leer Más</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div 
-                id="blog-list"
-                className={`right-list scroll-animate fade-in-up scroll-delay-2 ${
-                  visibleElements.has('blog-list') ? 'fade-in-up' : ''
-                }`}
-              >
-                <ul>
-                  <li>
-                    <div className="left-content align-self-center">
-                      <span><i className="fa fa-calendar"></i> 20 Mar 2026</span>
-                      <a href="#"><h4>Tendencias del Mercado Laboral</h4></a>
-                      <p>Conoce las habilidades más demandadas este año.</p>
-                    </div>
-                    <div className="right-image">
-                      <a href="#"><img src="/assets/blog-thumb-01.jpg" alt="" style={{maxWidth: '250px', height: 'auto', borderRadius: '20px'}} /></a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="left-content align-self-center">
-                      <span><i className="fa fa-calendar"></i> 15 Mar 2026</span>
-                      <a href="#"><h4>Prepara tu Entrevista Virtual</h4></a>
-                      <p>Tips para destacar en entrevistas online.</p>
-                    </div>
-                    <div className="right-image">
-                      <a href="#"><img src="/assets/blog-thumb-01.jpg" alt="" style={{maxWidth: '250px', height: 'auto', borderRadius: '20px'}} /></a>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="left-content align-self-center">
-                      <span><i className="fa fa-calendar"></i> 10 Mar 2026</span>
-                      <a href="#"><h4>Networking Digital Efectivo</h4></a>
-                      <p>Cómo construir contactos profesionales en línea.</p>
-                    </div>
-                    <div className="right-image">
-                      <a href="#"><img src="/assets/blog-thumb-01.jpg" alt="" style={{maxWidth: '250px', height: 'auto', borderRadius: '20px'}} /></a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
@@ -754,7 +673,6 @@ const Inicio = () => {
                     <li><a href="#about">Sobre Nosotros</a></li>
                     <li><a href="#services">Servicios</a></li>
                     <li><a href="#portfolio">Oportunidades</a></li>
-                    <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contacto</a></li>
                   </ul>
                 </div>

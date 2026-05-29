@@ -326,6 +326,18 @@
 }
 
 /* ---- RESPONSIVE ---- */
+@media (max-width: 992px) {
+  .perfil-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-body,
+  .perfil-identidad {
+    padding-left: var(--rwd-page-padding, 16px);
+    padding-right: var(--rwd-page-padding, 16px);
+  }
+}
+
 @media (max-width: 768px) {
   .perfil-identidad {
     flex-direction: column;

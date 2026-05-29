@@ -1,0 +1,41 @@
+/**
+ * JobLink — base compartida de diseño responsivo (RWD)
+ * Breakpoints estándar: móvil ≤768px | tablet ≤992px | laptop ≥1200px
+ */
+
+:root {
+  --rwd-mobile-max: 767px;
+  --rwd-tablet-max: 991px;
+  --rwd-laptop-min: 992px;
+  --rwd-desktop-min: 1200px;
+  --rwd-page-padding: clamp(12px, 4vw, 24px);
+}
+
+.App {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Contenedores fluidos reutilizables */
+.rwd-fluid {
+  width: 100%;
+  max-width: 100%;
+}
+
+.rwd-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--rwd-page-padding);
+  padding-right: var(--rwd-page-padding);
+  box-sizing: border-box;
+}
