@@ -116,7 +116,7 @@ const Home_User = () => {
 
           {/* Plan Pro Section */}
           <div className="plan-pro">
-            <h3>Plan Pro</h3>
+            <h3>Plan Pro....</h3>
             <p>Desbloquea herramientas exclusivas para crecer tu red profesional.</p>
             <button className="btn-plan">Ver Planes</button>
           </div>
