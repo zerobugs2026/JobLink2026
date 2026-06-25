@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+.jl-auth-login {
+  --jl-blue: #2333C4;
+  --jl-purple: #6D5DFC;
+  --jl-text: #0f172a;
+  --jl-muted: #64748b;
+  --jl-border: #e2e8f0;
+  --jl-bg: #f8fafc;
+  --jl-card: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  padding: 0;
+}
+
+.jl-auth-login *,
+.jl-auth-login *::before,
+.jl-auth-login *::after {
+  box-sizing: border-box;
+}
+
+.jl-auth-login h1,
+.jl-auth-login h2 {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.jl-auth-login p {
+  margin: 0;
+}
+
+/* ── Panel izquierdo ── */
+.jl-auth-login__brand {
+  display: none;
+  flex: 0 0 50%;
+  width: 50%;
+  max-width: 50%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--jl-blue) 0%, var(--jl-purple) 100%);
+  color: #fff;
+  padding: 3rem 2rem 2rem 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 992px) {
+  .jl-auth-login__brand {
+    display: flex;
+  }
+}
+
+.jl-auth-login__brand-logo,
+.jl-auth-login__brand-logo a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 2;
+  text-decoration: none;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.jl-auth-login__brand-logo a:hover {
+  opacity: 0.9;
+}
+
+.jl-auth-login__brand-logo-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jl-auth-login__brand-logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.jl-auth-login__brand-content {
+  position: relative;
+  z-index: 2;
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 2rem 0;
+  text-align: left;
+}
+
+.jl-auth-login__brand-content h1 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.jl-auth-login__brand-content > p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2rem;
+}
+
+.jl-auth-login__stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.jl-auth-login__stat-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.jl-auth-login__stat-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+}
+
+.jl-auth-login__brand-footer {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 1.5rem 0 0 0;
+  text-align: left;
+}
+
+.jl-auth-login__blob-1,
+.jl-auth-login__blob-2 {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.jl-auth-login__blob-1 {
+  width: 24rem;
+  height: 24rem;
+  bottom: -8rem;
+  right: -8rem;
+  background: rgba(255, 255, 255, 0.1);
+  filter: blur(60px);
+}
+
+.jl-auth-login__blob-2 {
+  width: 20rem;
+  height: 20rem;
+  top: -5rem;
+  left: -5rem;
+  background: rgba(109, 93, 252, 0.4);
+  filter: blur(60px);
+}
+
+/* ── Panel derecho ── */
+.jl-auth-login__form-panel {
+  flex: 1 1 50%;
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: var(--jl-bg);
+  overflow-y: auto;
+}
+
+@media (min-width: 992px) {
+  .jl-auth-login__form-panel {
+    flex: 0 0 50%;
+    width: 50%;
+    max-width: 50%;
+    padding: 0;
+  }
+}
+
+.jl-auth-login__form-inner {
+  width: 100%;
+  max-width: 28rem;
+  padding: 2rem 0;
+  text-align: left;
+}
+
+.jl-auth-login__mobile-logo,
+.jl-auth-login__mobile-logo a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.jl-auth-login__mobile-logo a:hover {
+  opacity: 0.9;
+}
+
+@media (min-width: 992px) {
+  .jl-auth-login__mobile-logo {
+    display: none;
+  }
+}
+
+.jl-auth-login__mobile-logo-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--jl-blue) 0%, var(--jl-purple) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.jl-auth-login__mobile-logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--jl-text);
+}
+
+.jl-auth-login__form-inner h2 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--jl-text);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.jl-auth-login__subtitle {
+  color: var(--jl-muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.jl-auth-login__field {
+  margin-bottom: 1.5rem;
+}
+
+.jl-auth-login__field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--jl-muted);
+  margin-bottom: 0.75rem;
+}
+
+.jl-auth-login__field input {
+  display: block;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--jl-border);
+  background: var(--jl-card);
+  color: var(--jl-text);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.jl-auth-login__field input:focus {
+  outline: none;
+  border-color: var(--jl-blue);
+  box-shadow: 0 0 0 3px rgba(35, 51, 196, 0.15);
+}
+
+.jl-auth-login__submit {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--jl-blue) 0%, var(--jl-purple) 100%) !important;
+  color: #fff !important;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.jl-auth-login__submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(35, 51, 196, 0.35);
+}
+
+.jl-auth-login__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.jl-auth-login__demo {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  background: rgba(241, 245, 249, 0.8);
+  border: 1px solid var(--jl-border);
+}
+
+.jl-auth-login__demo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--jl-text);
+  margin-bottom: 0.25rem;
+}
+
+.jl-auth-login__demo-title svg {
+  color: var(--jl-purple);
+  flex-shrink: 0;
+}
+
+.jl-auth-login__demo-creds {
+  font-size: 0.75rem;
+  color: var(--jl-muted);
+}
+
+.jl-auth-login__footer-link {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: var(--jl-muted);
+  text-align: center;
+}
+
+.jl-auth-login__footer-link a {
+  color: var(--jl-blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.jl-auth-login__footer-link a:hover {
+  text-decoration: underline;
+}
+
+/* Anular Bootstrap Reboot */
+.jl-auth-login button,
+.jl-auth-login input {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.jl-auth-login button.jl-auth-login__submit {
+  background-image: none;
+  text-transform: none;
+  letter-spacing: normal;
+}
