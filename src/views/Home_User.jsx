@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../styles/Home_User.css';
 
 const Home_User = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -123,9 +121,9 @@ const Home_User = () => {
               <span className="ai-icon">🤖</span>
               <span>Recomendado por IA</span>
             </div>
-            <h1 className="welcome-title">Bienvenido Byron 👋</h1>
+            <h1 className="welcome-title">Bienvenido {user.name}</h1>
             <p className="welcome-subtitle">
-              Encuentra oportunidades diseñadas para tu perfil de Ingeniería en Sistemas.
+              Encuentra oportunidades diseñadas para tu perfil de {user.career}.
             </p>
 
             <div className="stats-row">

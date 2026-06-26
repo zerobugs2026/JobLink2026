@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const UserHome = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Simular carga de datos del usuario
@@ -257,13 +255,7 @@ const UserHome = () => {
 
 // Header específico para vistas de Usuario
 const UserHeader = ({ user }) => {
-  const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
-
-  const handleLogout = () => {
-    // Lógica de logout
-    navigate('/login');
-  };
 
   return (
     <header className="fixed top-0 w-full z-50 px-6 py-4">

@@ -44,14 +44,25 @@ const redirectForUserType = (userType) => {
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [rol, setRol] = useState(null); // Estado para el rol
   const [userData, setUserData] = useState(null); // Datos adicionales desde Firestore
   const [userType, setUserType] = useState(null); // Estado para el tipo de usuario
+
+  // Asignar rol basado en el correo
+  const asignarRol = (email) => {
+    if (email === "desarrolladoressa2000@gmail.com") {
+      setRol("admin");
+    } else {
+      setRol("usuario");
+    }
+  };
 
   useEffect(() => {
     const auth = getAuth(appfirebase);
@@ -85,9 +96,9 @@ export const AuthProvider = ({ children }) => {
                 const fifteenDays = 15 * 24 * 60 * 60 * 1000;
                 if (Date.now() - base >= fifteenDays) {
                   // Intentar eliminación automática
-                  try { await deleteDoc(ref); } catch {}
+                  try { await deleteDoc(ref); } catch (e) { console.warn("Error al eliminar documento del usuario", e); }
                   try { await deleteUser(auth.currentUser); } catch (e) { console.warn("Delete user requires recent login", e); }
-                  try { await signOut(auth); } catch {}
+                  try { await signOut(auth); } catch (e) { console.warn("Error al cerrar sesión tras eliminación", e); }
                 }
               }
             } else {
@@ -104,20 +115,11 @@ export const AuthProvider = ({ children }) => {
         setUserType(null); // Limpiar el tipo de usuario
         localStorage.removeItem('userData'); // Limpiar localStorage
       }
+      setIsAuthLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
-
-  // Asignar rol basado en el correo
-  const asignarRol = (email) => {
-    // Aquí asignamos el rol según el correo. Por ejemplo, si el correo es del administrador.
-    if (email === "desarrolladoressa2000@gmail.com") {  // Cambia esto con el correo del admin
-      setRol("admin");
-    } else {
-      setRol("usuario");
-    }
-  };
 
   const logout = async () => {
     const auth = getAuth(appfirebase);
@@ -201,7 +203,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn, rol, logout, login, register, userData, userType }}>
+    <AuthContext.Provider value={{ user, isLoggedIn, isAuthLoading, rol, logout, login, register, userData, userType }}>
       {children}
     </AuthContext.Provider>
   );

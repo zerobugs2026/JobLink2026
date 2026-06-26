@@ -114,12 +114,10 @@ const Icons = {
 };
 
 const University_User = () => {
-  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setUser({ name: 'Byron' });
       setIsLoading(false);
     }, 500);
     return () => clearTimeout(timer);

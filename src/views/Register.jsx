@@ -28,7 +28,9 @@ const TRUST = [
   { icon: KeyRound, title: 'Privacidad garantizada', text: 'Tu información personal está 100% segura.' },
 ];
 
-function Field({ label, required, icon: Icon, children }) {
+function Field({ label, required, icon, children }) {
+  const Icon = icon;
+
   return (
     <div className="jl-auth-register__field">
       <label>
