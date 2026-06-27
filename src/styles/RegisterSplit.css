@@ -1,0 +1,464 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.register-split-page {
+  background-color: #f4f7fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.register-split-card {
+  max-width: 1200px;
+  width: 100%;
+  background: white;
+  border-radius: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 20, 40, 0.10);
+  padding: 2.5rem 3rem;
+  transition: all 0.2s;
+}
+
+/* header logo */
+.register-split-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.8rem;
+}
+.register-split-logo-icon {
+  font-size: 2.2rem;
+  color: #1a3b5d;
+  background: #e7edf5;
+  padding: 0.5rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register-split-logo h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0b1e2e;
+  letter-spacing: -0.5px;
+}
+.register-split-logo h1 span {
+  font-weight: 300;
+  color: #2b5f8a;
+}
+
+/* título principal */
+.register-split-page-title {
+  margin-bottom: 0.25rem;
+}
+.register-split-page-title h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0b1e2e;
+  letter-spacing: -0.3px;
+}
+.register-split-page-title p {
+  font-size: 1rem;
+  color: #5f6f80;
+  margin-top: 0.3rem;
+  font-weight: 450;
+}
+
+/* grid de 3 columnas (features) */
+.register-split-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  margin: 2rem 0 2.5rem 0;
+}
+.register-split-feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.register-split-feature-icon {
+  font-size: 1.8rem;
+  color: #1a4b7a;
+  background: #e9f0f8;
+  padding: 0.7rem;
+  border-radius: 18px;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register-split-feature-item h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0b1e2e;
+  margin-bottom: 0.2rem;
+}
+.register-split-feature-item p {
+  font-size: 0.9rem;
+  color: #4a5a6e;
+  line-height: 1.4;
+}
+
+/* separador visual */
+.register-split-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 1.8rem 0;
+}
+
+/* formulario: dos columnas */
+.register-split-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2.5rem;
+  margin-top: 0.5rem;
+}
+
+.register-split-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.register-split-form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a2b3c;
+  letter-spacing: 0.3px;
+}
+
+.register-split-input-placeholder {
+  font-size: 0.85rem;
+  color: #8b9aaa;
+  background: #f1f5f9;
+  padding: 0.5rem 0.9rem;
+  border-radius: 40px;
+  border: 1px solid #e2e8f0;
+  display: inline-block;
+  width: fit-content;
+  min-width: 140px;
+  font-weight: 450;
+  margin-top: 0.1rem;
+}
+
+.register-split-input-placeholder i {
+  margin-right: 6px;
+  color: #6f8aa3;
+  font-size: 0.8rem;
+}
+
+/* campos con doble placeholder (ej. Juan / Carlos) */
+.register-split-double-placeholder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: #f1f5f9;
+  padding: 0.4rem 0.9rem;
+  border-radius: 40px;
+  border: 1px solid #e2e8f0;
+  align-items: center;
+}
+.register-split-double-placeholder span {
+  font-size: 0.85rem;
+  color: #3d556b;
+  background: white;
+  padding: 0.15rem 0.7rem;
+  border-radius: 30px;
+  border: 1px solid #d0dbe8;
+}
+.register-split-double-placeholder span:last-child {
+  color: #7b8fa3;
+  background: transparent;
+  border: none;
+  font-weight: 400;
+}
+.register-split-double-placeholder i {
+  color: #8ba0b5;
+  margin-right: 0.2rem;
+}
+
+/* celular, correo, contraseñas */
+.register-split-input-sim {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 40px;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.9rem;
+  color: #1f344a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.register-split-input-sim i {
+  color: #6f8aa3;
+  font-size: 0.9rem;
+  width: 20px;
+}
+.register-split-input-sim span {
+  color: #3a5a78;
+}
+.register-split-input-sim .hint {
+  color: #7e93aa;
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.register-split-password-hint {
+  font-size: 0.7rem;
+  color: #7e93aa;
+  padding-left: 1.2rem;
+  margin-top: 0.1rem;
+}
+
+/* terminos y botón */
+.register-split-terms-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 0 1rem 0;
+  gap: 1rem;
+}
+
+.register-split-terms-check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.register-split-terms-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #1a4b7a;
+  border-radius: 6px;
+}
+.register-split-terms-check label {
+  font-size: 0.9rem;
+  color: #1d3347;
+  font-weight: 500;
+}
+
+.register-split-btn-create {
+  background: #0b2b47;
+  color: white;
+  border: none;
+  padding: 0.7rem 2.8rem;
+  border-radius: 60px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(11, 43, 71, 0.15);
+  transition: 0.1s;
+}
+.register-split-btn-create:hover {
+  background: #0d3558;
+}
+.register-split-btn-create:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.register-split-btn-create i {
+  margin-right: 6px;
+}
+
+.register-split-login-link {
+  font-size: 0.9rem;
+  color: #1d3f61;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+.register-split-login-link i {
+  margin-right: 4px;
+}
+.register-split-login-link a {
+  color: #1d3f61;
+  text-decoration: none;
+}
+.register-split-login-link a:hover {
+  text-decoration: underline;
+}
+
+/* footer con 3 badges */
+.register-split-footer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.8rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #e9eef4;
+  gap: 0.8rem;
+}
+
+.register-split-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.register-split-badge-item-icon {
+  font-size: 1.1rem;
+  color: #1a4b7a;
+  background: #e9f0f8;
+  padding: 0.5rem;
+  border-radius: 40px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register-split-badge-item span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1b3145;
+}
+.register-split-badge-item small {
+  font-size: 0.75rem;
+  color: #5b738b;
+  display: block;
+  font-weight: 400;
+}
+
+.register-split-miles {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  background: #eaf1fa;
+  padding: 0.25rem 1rem 0.25rem 0.9rem;
+  border-radius: 60px;
+}
+.register-split-miles strong {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0b2b47;
+}
+.register-split-miles span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #2e4a69;
+  text-transform: lowercase;
+}
+
+/* slogan footer */
+.register-split-slogan {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #8aa0b6;
+  text-align: right;
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 0.8rem;
+  opacity: 0.7;
+}
+.register-split-slogan i {
+  margin-right: 4px;
+}
+
+/* Success Message */
+.register-split-success {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #166534;
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+/* Error Message */
+.register-split-firebase-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+/* Spinner */
+.register-split-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, .3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.register-split-error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* actual input fields */
+.register-split-actual-input {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 40px;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.9rem;
+  color: #1f344a;
+  width: 100%;
+  outline: none;
+}
+.register-split-actual-input:focus {
+  border-color: #1a4b7a;
+}
+.register-split-actual-input::placeholder {
+  color: #7e93aa;
+}
+
+/* ajustes responsive */
+@media (max-width: 800px) {
+  .register-split-card {
+    padding: 1.8rem;
+  }
+  .register-split-form-row {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .register-split-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .register-split-terms-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .register-split-footer-badges {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-split-logo h1 {
+    font-size: 1.6rem;
+  }
+  .register-split-page-title h2 {
+    font-size: 1.8rem;
+  }
+}

@@ -5,35 +5,14 @@ import '../styles/Home_User.css';
 const Home_User = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
-  // Cargar Phosphor Icons dinámicamente
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/@phosphor-icons/web';
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    // Cargar datos del usuario después del login/registro
     const timer = setTimeout(() => {
       const userData = {
-        name: 'Byron Martínez',
-        email: 'byron@example.com',
-        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Byron',
-        title: 'Desarrollador Full Stack',
-        location: 'Ciudad de México, MX',
-        experience: '5+ Años',
-        projects: 23,
-        profileVisibility: 94,
-        ranking: 'Top 15%'
+        name: 'Byron',
+        career: 'Ingeniería en Sistemas',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Byron'
       };
       setUser(userData);
       setIsLoading(false);
@@ -42,78 +21,93 @@ const Home_User = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F4F7FA' }}>
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 font-medium">Preparando tu espacio...</p>
-        </div>
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p className="loading-text">Preparando tu espacio...</p>
       </div>
     );
   }
 
   return (
-    <div style={{ backgroundColor: '#f5f6fa', overflowX: 'hidden' }}>
-      {/* Connecta UI Header */}
-      <header className="header">
-        <div className="header-left">
-          <div className="logo">A</div>
-          <span className="logo-text">Connecta</span>
+    <div className="joblink-dashboard">
+      {/* Top Navigation Bar */}
+      <header className="top-navbar">
+        <div className="navbar-left">
+          <div className="logo">
+            <span className="logo-icon">🔗</span>
+            <span className="logo-text">JobLink</span>
+          </div>
         </div>
-        <input type="text" placeholder="Buscar personas, empleos, publicaciones..." />
-        <div className="header-icons">
-          <button className="btn-post">+ Publicar</button>
-          <span className="icon-btn">✉️</span>
-          <span className="icon-btn with-badge">
-            🔔
-            <span className="badge">8</span>
-          </span>
-          <img src={user?.avatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=Byron'} alt="Avatar" className="avatar" />
+        <div className="navbar-center">
+          <div className="search-bar">
+            <span className="search-icon">🔍</span>
+            <input type="text" placeholder="Busca empleos, empresas o eventos" />
+          </div>
+        </div>
+        <div className="navbar-right">
+          <button className="btn-create-cv">Crear CV</button>
+          <div className="notification-badge">
+            <span className="bell-icon">🔔</span>
+            <span className="badge">Bienvenido a JobLink</span>
+          </div>
         </div>
       </header>
 
-      <div className="container">
-        
-        {/* Sidebar */}
-        <aside className="sidebar">
-          <nav>
-            <p className="nav-item active">
-              <i className="ph ph-house"></i> Inicio
-            </p>
-            <p className="nav-item">
-              <i className="ph ph-users"></i> Mi Red
-            </p>
-            <p className="nav-item">
-              <i className="ph ph-magnifying-glass"></i> Descubrir
-            </p>
-            <p className="nav-item">
-              <i className="ph ph-chat-circle"></i> Mensajes
+      <div className="dashboard-container">
+        {/* Left Sidebar */}
+        <aside className="left-sidebar">
+          <nav className="sidebar-nav">
+            <a href="#" className="nav-item active">
+              <span className="nav-icon">🏠</span>
+              <span>Inicio</span>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">💼</span>
+              <span>Empleos</span>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">🎓</span>
+              <span>Prácticas</span>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">🏢</span>
+              <span>Empresas</span>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">📅</span>
+              <span>Eventos</span>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">📚</span>
+              <span>Cursos</span>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">🔖</span>
+              <span>Guardados</span>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">💬</span>
+              <span>Mensajes</span>
               <span className="nav-badge">3</span>
-            </p>
-            <p className="nav-item">
-              <i className="ph ph-bell"></i> Notificaciones
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">🔔</span>
+              <span>Notificaciones</span>
               <span className="nav-badge">8</span>
-            </p>
-            <p className="nav-item">
-              <i className="ph ph-bookmark"></i> Guardados
-            </p>
-            <p className="nav-item">
-              <i className="ph ph-calendar"></i> Eventos
-            </p>
-            <p className="nav-item">
-              <i className="ph ph-chart-line-up"></i> Analíticas
-            </p>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">📊</span>
+              <span>Mi Progreso</span>
+            </a>
+            <a href="#" className="nav-item">
+              <span className="nav-icon">⚙️</span>
+              <span>Configuración</span>
+            </a>
           </nav>
 
+ Home_User
           {/* Plan Pro Section */}
           <div className="plan-pro">
             <h3>Plan Pro....</h3>
@@ -121,230 +115,159 @@ const Home_User = () => {
             <button className="btn-plan">Ver Planes</button>
           </div>
 
-          <div className="bottom">
-            <p className="bottom-item">🌙 Modo oscuro</p>
-            <p className="bottom-item">🚪 Cerrar sesión</p>
-          </div>
+          <button className="btn-improve-capacity">
+            <span className="btn-icon">🚀</span>
+            <span>Mejora tu Capacidad</span>
+          </button>
+main
+
+          <a href="#" className="logout-link">Cerrar sesión</a>
         </aside>
 
-        {/* Main Content */}
-        <main className="main">
-          
-          {/* Business Card */}
-          <div className="business-card">
-            <div className="banner">
-              <div className="banner-content">
-                <div className="logo-box">A</div>
-                <div className="banner-info">
-                  <h2>Aurora Labs <span className="verified">✓</span></h2>
-                  <p>12.5K seguidores · Tecnología · Ciudad de México</p>
-                </div>
-                <div className="banner-actions">
-                  <button className="follow">Seguir</button>
-                  <button className="more-options">•••</button>
-                </div>
-              </div>
+        {/* Main Content Area */}
+        <main className="main-content">
+          {/* Welcome Section */}
+          <section className="welcome-section">
+            <div className="ai-badge">
+              <span className="ai-icon">🤖</span>
+              <span>Recomendado por IA</span>
             </div>
-
-            <p className="desc">
-              Desarrollamos soluciones de software innovadoras que impulsan el crecimiento de empresas en todo el mundo. 🌍
+            <h1 className="welcome-title">Bienvenido Byron 👋</h1>
+            <p className="welcome-subtitle">
+              Encuentra oportunidades diseñadas para tu perfil de Ingeniería en Sistemas.
             </p>
 
-            <div className="stats">
+            <div className="stats-row">
               <div className="stat-item">
-                <i className="ph ph-calendar-blank"></i>
-                <b>2018</b>
-                <span>Fundación</span>
+                <span className="stat-value">75%</span>
+                <span className="stat-label">de compatibilidad con empleos disponibles</span>
               </div>
               <div className="stat-item">
-                <i className="ph ph-users"></i>
-                <b>120+</b>
-                <span>Empleados</span>
-              </div>
-              <div className="stat-item">
-                <i className="ph ph-globe"></i>
-                <b>15+</b>
-                <span>Países</span>
-              </div>
-              <div className="stat-item">
-                <i className="ph ph-folder"></i>
-                <b>48</b>
-                <span>Proyectos</span>
+                <span className="stat-value">8</span>
+                <span className="stat-label">empleos compatibles ahora</span>
               </div>
             </div>
 
-            {/* Lo que hacemos */}
-            <div className="section">
-              <h4>Lo que hacemos</h4>
-              <div className="tags">
-                <span className="tag">Cloud Solutions</span>
-                <span className="tag">Inteligencia Artificial</span>
-                <span className="tag">Desarrollo Web</span>
-                <span className="tag">Data Analytics</span>
-              </div>
+            <div className="action-buttons">
+              <button className="btn-primary">Buscar Empleos</button>
+              <button className="btn-secondary">Actualizar CV</button>
+              <button className="btn-tertiary">Mejora tu Capacidad</button>
             </div>
+          </section>
 
-            {/* Proyectos destacados */}
-            <div className="section">
-              <h4>Proyectos destacados</h4>
-              <div className="highlights-nav">
-                <button className="nav-arrow">‹</button>
-                <div className="highlights-scroll">
-                  <div className="highlight-card">
-                    <div className="highlight-icon">🚀</div>
-                    <p className="highlight-title">Lanzamos nuestra nueva plataforma en la nube</p>
-                    <span className="highlight-date">Hace 2 días</span>
-                  </div>
-                  <div className="highlight-card">
-                    <div className="highlight-icon">💻</div>
-                    <p className="highlight-title">Webinar: Innovación en arquitectura de software</p>
-                    <span className="highlight-date">Hace 4 días</span>
-                  </div>
-                  <div className="highlight-card">
-                    <div className="highlight-icon">🌍</div>
-                    <p className="highlight-title">Aurora Labs alcanza 15 países</p>
-                    <span className="highlight-date">Hace 1 semana</span>
-                  </div>
+          {/* AI Recommendations Section */}
+          <section className="recommendations-section">
+            <div className="section-header">
+              <h2 className="section-title">RECOMENDACIONES IA</h2>
+              <a href="#" className="view-all-link">Ver todos →</a>
+            </div>
+            <h3 className="section-subtitle">Empleos compatibles para ti</h3>
+
+            <div className="job-cards">
+              {/* Job Card 1 */}
+              <div className="job-card">
+                <div className="job-header">
+                  <h4 className="job-title">Ingeniero de Software Junior</h4>
+                  <span className="ai-compatibility">Compatibilidad IA 100%</span>
                 </div>
-                <button className="nav-arrow">›</button>
+                <p className="company-name">CodeLabs</p>
+                <div className="job-details">
+                  <span className="job-detail">📍 Colombia</span>
+                  <span className="job-detail">💼 Hibrido</span>
+                  <span className="job-detail">💵 $1,500 - $1,800</span>
+                </div>
+                <div className="job-footer">
+                  <span className="job-time">Hace 1 día</span>
+                  <button className="btn-apply">Aplicar</button>
+                </div>
+              </div>
+
+              {/* Job Card 2 */}
+              <div className="job-card">
+                <div className="job-header">
+                  <h4 className="job-title">Desarrollador Backend Node.js</h4>
+                  <span className="ai-compatibility">Compatibilidad IA 85%</span>
+                </div>
+                <p className="company-name">Microsoft</p>
+                <div className="job-details">
+                  <span className="job-detail">📍 Ciudad de México</span>
+                  <span className="job-detail">💼 Presencial</span>
+                  <span className="job-detail">💵 $2,000 - $2,500</span>
+                </div>
+                <div className="job-footer">
+                  <span className="job-time">Hace 3 días</span>
+                  <button className="btn-apply">Aplicar</button>
+                </div>
               </div>
             </div>
-
-            {/* Action Buttons */}
-            <div className="actions">
-              <button className="action-btn"><i className="ph ph-bookmark"></i> Guardar</button>
-              <button className="action-btn"><i className="ph ph-user-plus"></i> Solicitud</button>
-              <button className="action-btn"><i className="ph ph-info"></i> Info</button>
-              <button className="action-btn"><i className="ph ph-envelope"></i> Contacto</button>
-              <button className="action-btn"><i className="ph ph-globe"></i> Sitio web</button>
-              <button className="action-btn"><i className="ph ph-dots-three"></i> Más</button>
-            </div>
-
-            {/* Engagement Metrics */}
-            <div className="engagement">
-              <div className="engagement-group">
-                <i className="ph ph-thumbs-up engagement-icon"></i>
-                <span className="engagement-count">128</span>
-              </div>
-              <div className="engagement-group">
-                <i className="ph ph-chat-circle engagement-icon"></i>
-                <span className="engagement-count">12 comentarios</span>
-              </div>
-              <div className="engagement-group">
-                <i className="ph ph-share-network engagement-icon"></i>
-                <span className="engagement-count">34 compartidos</span>
-              </div>
-            </div>
-          </div>
-
+          </section>
         </main>
 
-        {/* Rightbar */}
-        <aside className="rightbar">
-          {/* Tu actividad esta semana */}
-          <div className="card activity-card">
-            <div className="card-header">
-              <h3>Tu actividad esta semana</h3>
-              <select className="dropdown">
-                <option>Esta semana</option>
-                <option>Este mes</option>
-              </select>
-            </div>
-            <div className="stats2">
-              <div>
-                <b>24</b>
-                <span>Nuevos contactos</span>
-              </div>
-              <div>
-                <b>152</b>
-                <span>Visitas a tu perfil</span>
-              </div>
-              <div>
-                <b>18</b>
-                <span>Interacciones</span>
-              </div>
-            </div>
-          </div>
+        {/* Right Sidebar */}
+        <aside className="right-sidebar">
+          {/* Progress Section */}
+          <section className="progress-section">
+            <h3 className="section-title">Tu progreso</h3>
+            <p className="section-subtitle">Resumen de tu actividad profesional</p>
 
-          {/* Eventos para ti */}
-          <div className="card">
-            <div className="card-header">
-              <h3>Eventos para ti</h3>
-              <a href="#" className="view-all">Ver todos</a>
-            </div>
-            <div className="event-list">
-              <div className="event-item">
-                <div className="event-icon red">📅</div>
-                <div className="event-details">
-                  <p className="event-title">Workshop de Diseño</p>
-                  <p className="event-subtitle">Sistemas escalables y UX</p>
-                  <p className="event-date">24 Mayo · En línea</p>
-                </div>
+            <div className="progress-circle">
+              <div className="circle">
+                <span className="percentage">85%</span>
               </div>
-              <div className="event-item">
-                <div className="event-icon green">📅</div>
-                <div className="event-details">
-                  <p className="event-title">Feria de Empleo Tech</p>
-                  <p className="event-subtitle">Conecta con empresas</p>
-                  <p className="event-date">31 Mayo · Ciudad de México</p>
-                </div>
-              </div>
-              <div className="event-item">
-                <div className="event-icon orange">📅</div>
-                <div className="event-details">
-                  <p className="event-title">Charla: Liderazgo Moderno</p>
-                  <p className="event-subtitle">Equipos + Productividad</p>
-                  <p className="event-date">6 Junio · En línea</p>
-                </div>
+              <div className="progress-info">
+                <p className="progress-status">PERFIL COMPLETADO</p>
+                <a href="#" className="complete-link">Completa tu CV para acceder al match perfecto. Completar ahora →</a>
               </div>
             </div>
-          </div>
 
-          {/* Personas que podrías conocer */}
-          <div className="card">
-            <div className="card-header">
-              <h3>Personas que podrías conocer</h3>
-              <a href="#" className="view-all">Ver todos</a>
-            </div>
-            <div className="people-list">
-              <div className="person-item">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Daniel" alt="Daniel" className="person-avatar" />
-                <div className="person-details">
-                  <p className="person-name">Daniel Torres</p>
-                  <p className="person-title">Product Manager en TechNova</p>
-                </div>
-                <div className="person-actions">
-                  <button className="btn-connect">Conectar</button>
-                  <button className="btn-dismiss">×</button>
-                </div>
+            <div className="stats-grid">
+              <div className="stat-card">
+                <span className="stat-number">12</span>
+                <span className="stat-label">Postulaciones</span>
               </div>
-              <div className="person-item">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Maria" alt="María" className="person-avatar" />
-                <div className="person-details">
-                  <p className="person-name">María González</p>
-                  <p className="person-title">Desarrolladora en DevStudio</p>
-                </div>
-                <div className="person-actions">
-                  <button className="btn-connect">Conectar</button>
-                  <button className="btn-dismiss">×</button>
-                </div>
+              <div className="stat-card">
+                <span className="stat-number">34</span>
+                <span className="stat-label">Empresas visitadas</span>
               </div>
-              <div className="person-item">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos" alt="Carlos" className="person-avatar" />
-                <div className="person-details">
-                  <p className="person-name">Carlos Vega</p>
-                  <p className="person-title">Especialista en Datos</p>
-                </div>
-                <div className="person-actions">
-                  <button className="btn-connect">Conectar</button>
-                  <button className="btn-dismiss">×</button>
-                </div>
+              <div className="stat-card">
+                <span className="stat-number">3</span>
+                <span className="stat-label">Entrevistas</span>
+              </div>
+              <div className="stat-card">
+                <span className="stat-number">75%</span>
+                <span className="stat-label">Compatibilidad</span>
               </div>
             </div>
-            <a href="#" className="show-more">Mostrar más</a>
-          </div>
+
+            <div className="graph-container">
+              <h4 className="graph-title">Postulaciones esta semana</h4>
+              <div className="graph-placeholder">
+                <svg viewBox="0 0 300 100" className="graph-svg">
+                  <polyline
+                    points="0,80 50,60 100,70 150,40 200,50 250,30 300,45"
+                    fill="none"
+                    stroke="#3B82F6"
+                    strokeWidth="2"
+                  />
+                  <circle cx="0" cy="80" r="4" fill="#3B82F6" />
+                  <circle cx="50" cy="60" r="4" fill="#3B82F6" />
+                  <circle cx="100" cy="70" r="4" fill="#3B82F6" />
+                  <circle cx="150" cy="40" r="4" fill="#3B82F6" />
+                  <circle cx="200" cy="50" r="4" fill="#3B82F6" />
+                  <circle cx="250" cy="30" r="4" fill="#3B82F6" />
+                  <circle cx="300" cy="45" r="4" fill="#3B82F6" />
+                </svg>
+              </div>
+            </div>
+          </section>
+
+          {/* Improve Capacity Section */}
+          <section className="improve-section">
+            <h3 className="section-title">Mejora tu Capacidad</h3>
+            <p className="section-subtitle">Plan personalizado generado por IA según tu carrera y habilidades.</p>
+            <button className="btn-view-plan">Ver Plan</button>
+          </section>
         </aside>
-
       </div>
     </div>
   );
