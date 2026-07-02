@@ -50,7 +50,7 @@ const Home_User = () => {
           <button className="btn-create-cv">Crear CV</button>
           <div className="notification-badge">
             <span className="bell-icon">🔔</span>
-            <span className="badge">Bienvenido a JobLink</span>
+            <span className="badge">como estan persondas desconocidas</span>
           </div>
         </div>
       </header>

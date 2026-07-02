@@ -147,7 +147,7 @@ const University_User = () => {
         <div className="header-center">
           <div className="search-container">
             <span className="search-icon-wrapper">{Icons.search}</span>
-            <input type="text" placeholder="Busca empleos, empresas o eventos" className="search-input" />
+            <input type="text" placeholder="Busca empleos en empresas grandes..." className="search-input" />
           </div>
         </div>
         <div className="header-right">
@@ -244,12 +244,49 @@ const University_User = () => {
             </div>
           </div>
 
+          {/* Featured Companies Section */}
+          <div className="featured-companies-section">
+            <div className="section-header">
+              <div>
+                <h2 className="section-title">EMPRESAS GRANDES DESTACADAS</h2>
+                <p className="section-subtitle">Oportunidades en las mejores empresas del mundo</p>
+              </div>
+              <a href="#" className="view-all-link">Ver todas →</a>
+            </div>
+            <div className="companies-grid">
+              <div className="company-card">
+                <div className="company-logo-wrapper">MS</div>
+                <h3 className="company-card-name">Microsoft</h3>
+                <p className="company-card-info">+50 vacantes para graduados</p>
+                <button className="btn-follow-company">Ver vacantes</button>
+              </div>
+              <div className="company-card">
+                <div className="company-logo-wrapper">G</div>
+                <h3 className="company-card-name">Google</h3>
+                <p className="company-card-info">+35 vacantes para graduados</p>
+                <button className="btn-follow-company">Ver vacantes</button>
+              </div>
+              <div className="company-card">
+                <div className="company-logo-wrapper">AMZ</div>
+                <h3 className="company-card-name">Amazon</h3>
+                <p className="company-card-info">+40 vacantes para graduados</p>
+                <button className="btn-follow-company">Ver vacantes</button>
+              </div>
+              <div className="company-card">
+                <div className="company-logo-wrapper">M</div>
+                <h3 className="company-card-name">Meta</h3>
+                <p className="company-card-info">+25 vacantes para graduados</p>
+                <button className="btn-follow-company">Ver vacantes</button>
+              </div>
+            </div>
+          </div>
+
           {/* AI Recommendations Section */}
           <div className="recommendations-section">
             <div className="section-header">
               <div>
                 <h2 className="section-title">RECOMENDACIONES IA</h2>
-                <p className="section-subtitle">Empleos compatibles para ti</p>
+                <p className="section-subtitle">Empleos compatibles para tu perfil de graduado</p>
               </div>
               <a href="#" className="view-all-link">Ver todos →</a>
             </div>
@@ -260,11 +297,11 @@ const University_User = () => {
                   <h3 className="job-title">Ingeniero de Software Junior</h3>
                   <span className="ai-compatibility">Compatibilidad IA 100%</span>
                 </div>
-                <p className="company-name">CodeLabs</p>
+                <p className="company-name">Microsoft</p>
                 <div className="job-details">
-                  <span className="job-detail">Colombia</span>
-                  <span className="job-detail">Hibrido</span>
-                  <span className="job-detail">$1,500 - $1,800</span>
+                  <span className="job-detail">🌎 Global</span>
+                  <span className="job-detail">🏢 Remoto</span>
+                  <span className="job-detail">💰 $2,500 - $3,200</span>
                 </div>
                 <div className="job-footer">
                   <span className="job-time">Hace 1 día</span>
@@ -275,13 +312,30 @@ const University_User = () => {
               <div className="job-card">
                 <div className="job-header">
                   <h3 className="job-title">Desarrollador Backend Node.js</h3>
-                  <span className="ai-compatibility">Compatibilidad IA 85%</span>
+                  <span className="ai-compatibility">Compatibilidad IA 95%</span>
                 </div>
-                <p className="company-name">Microsoft</p>
+                <p className="company-name">Google</p>
                 <div className="job-details">
-                  <span className="job-detail">Ciudad de México</span>
-                  <span className="job-detail">Presencial</span>
-                  <span className="job-detail">$2,000 - $2,500</span>
+                  <span className="job-detail">🇺🇸 Estados Unidos</span>
+                  <span className="job-detail">🏢 Híbrido</span>
+                  <span className="job-detail">💰 $3,000 - $4,000</span>
+                </div>
+                <div className="job-footer">
+                  <span className="job-time">Hace 2 días</span>
+                  <button className="btn-apply">Aplicar</button>
+                </div>
+              </div>
+              {/* Job Card 3 */}
+              <div className="job-card">
+                <div className="job-header">
+                  <h3 className="job-title">Data Scientist Junior</h3>
+                  <span className="ai-compatibility">Compatibilidad IA 90%</span>
+                </div>
+                <p className="company-name">Amazon</p>
+                <div className="job-details">
+                  <span className="job-detail">🇪🇺 Europa</span>
+                  <span className="job-detail">🏢 Remoto</span>
+                  <span className="job-detail">💰 $2,800 - $3,500</span>
                 </div>
                 <div className="job-footer">
                   <span className="job-time">Hace 3 días</span>
@@ -290,22 +344,52 @@ const University_User = () => {
               </div>
             </div>
           </div>
+
+          {/* Career Opportunities Section */}
+          <div className="career-opportunities-section">
+            <div className="section-header">
+              <div>
+                <h2 className="section-title">OPORTUNIDADES DE CARRERA</h2>
+                <p className="section-subtitle">Programas especiales para recién graduados</p>
+              </div>
+            </div>
+            <div className="opportunities-grid">
+              <div className="opportunity-card">
+                <div className="opportunity-icon">🎓</div>
+                <h3 className="opportunity-title">Graduate Programs</h3>
+                <p className="opportunity-description">Programas de rotación en empresas Fortune 500</p>
+                <span className="opportunity-badge">+20 empresas</span>
+              </div>
+              <div className="opportunity-card">
+                <div className="opportunity-icon">🚀</div>
+                <h3 className="opportunity-title">Tech Startups</h3>
+                <p className="opportunity-description">Oportunidades en startups tecnológicas en crecimiento</p>
+                <span className="opportunity-badge">+50 startups</span>
+              </div>
+              <div className="opportunity-card">
+                <div className="opportunity-icon">🌍</div>
+                <h3 className="opportunity-title">Internacional</h3>
+                <p className="opportunity-description">Trabaja en cualquier parte del mundo</p>
+                <span className="opportunity-badge">+15 países</span>
+              </div>
+            </div>
+          </div>
         </main>
 
         {/* Right Sidebar */}
         <aside className="right-sidebar">
-          {/* Progress Section */}
+          {/* Career Progress Section */}
           <div className="progress-section">
-            <h3 className="section-title">Tu progreso</h3>
-            <p className="section-subtitle">Resumen de tu actividad profesional</p>
+            <h3 className="section-title">Tu Carrera Profesional</h3>
+            <p className="section-subtitle">Progreso hacia tu empleo ideal en empresas grandes</p>
             
             <div className="progress-circle">
               <div className="circle">
                 <span className="percentage">85%</span>
               </div>
               <div className="progress-info">
-                <p className="progress-status">PERFIL COMPLETADO</p>
-                <a href="#" className="complete-link">Completa tu CV para acceder al match perfecto. Completar ahora →</a>
+                <p className="progress-status">PERFIL LISTO PARA GRANDES EMPRESAS</p>
+                <a href="#" className="complete-link">Optimiza tu CV para Microsoft, Google y más →</a>
               </div>
             </div>
 
@@ -315,46 +399,41 @@ const University_User = () => {
                 <span className="stat-label">Postulaciones</span>
               </div>
               <div className="stat-card">
-                <span className="stat-number">34</span>
-                <span className="stat-label">Empresas visitadas</span>
+                <span className="stat-number">8</span>
+                <span className="stat-label">Empresas Grandes</span>
               </div>
               <div className="stat-card">
                 <span className="stat-number">3</span>
                 <span className="stat-label">Entrevistas</span>
               </div>
               <div className="stat-card">
-                <span className="stat-number">75%</span>
-                <span className="stat-label">Compatibilidad</span>
+                <span className="stat-number">92%</span>
+                <span className="stat-label">Match Empresas Top</span>
               </div>
             </div>
 
-            <div className="graph-container">
-              <h4 className="graph-title">Postulaciones esta semana</h4>
-              <div className="graph-placeholder">
-                <svg className="graph-svg" viewBox="0 0 280 100">
-                  <polyline
-                    fill="none"
-                    stroke="#3B82F6"
-                    strokeWidth="2"
-                    points="0,80 40,60 80,70 120,40 160,50 200,30 240,45 280,20"
-                  />
-                  <circle cx="40" cy="60" r="4" fill="#3B82F6" />
-                  <circle cx="80" cy="70" r="4" fill="#3B82F6" />
-                  <circle cx="120" cy="40" r="4" fill="#3B82F6" />
-                  <circle cx="160" cy="50" r="4" fill="#3B82F6" />
-                  <circle cx="200" cy="30" r="4" fill="#3B82F6" />
-                  <circle cx="240" cy="45" r="4" fill="#3B82F6" />
-                  <circle cx="280" cy="20" r="4" fill="#3B82F6" />
-                </svg>
+            <div className="career-tips">
+              <h4 className="tips-title">Consejos para Grandes Empresas</h4>
+              <div className="tip-item">
+                <span className="tip-icon">💡</span>
+                <p className="tip-text">Completa proyectos en GitHub para destacar</p>
+              </div>
+              <div className="tip-item">
+                <span className="tip-icon">🎯</span>
+                <p className="tip-text">Prepara entrevistas técnicas con LeetCode</p>
+              </div>
+              <div className="tip-item">
+                <span className="tip-icon">🌟</span>
+                <p className="tip-text">Obtén certificaciones de AWS/Azure</p>
               </div>
             </div>
           </div>
 
           {/* Improve Capacity Section */}
           <div className="improve-section">
-            <h3 className="section-title">Mejora tu Capacidad</h3>
-            <p className="section-subtitle">Plan personalizado generado por IA según tu carrera y habilidades.</p>
-            <button className="btn-view-plan">Ver mi plan</button>
+            <h3 className="section-title">Plan de Carrera IA</h3>
+            <p className="section-subtitle">Ruta personalizada para trabajar en empresas Fortune 500.</p>
+            <button className="btn-view-plan">Ver mi plan de carrera</button>
           </div>
         </aside>
       </div>

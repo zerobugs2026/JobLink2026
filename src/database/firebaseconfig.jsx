@@ -6,21 +6,23 @@ import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyDVRvbejHzcfkZYswLcKJ-L0sAJFm6rOwg",
   authDomain: "jobling-94d55.firebaseapp.com",
+  databaseURL: "https://jobling-94d55-default-rtdb.firebaseio.com",
   projectId: "jobling-94d55",
   storageBucket: "jobling-94d55.firebasestorage.app",
   messagingSenderId: "127639375491",
-  appId: "1:127639375491:web:3016378fc49f3c6bb915b6",
+  appId: "1:127639375491:web:3016378fc49f3c6bb915b6"
 };
 
-// Inicializa Firebase
-const appfirebase = initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-// Inicializa Firestore
-const db = getFirestore(appfirebase);
+// Initialize Firestore
+const db = getFirestore(app);
 
-// Inicializa Authentication
-const auth = getAuth(appfirebase);
+// Initialize Authentication
+const auth = getAuth(app);
 
-const storage = getStorage(appfirebase); // ✅ Agregado
+// Initialize Storage
+const storage = getStorage(app);
 
-export { appfirebase, db, auth, storage }; // ✅ Exportado también
+export { app, db, auth, storage };
