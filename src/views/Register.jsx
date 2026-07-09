@@ -111,15 +111,14 @@ export default function Register() {
 
             <div className="jl-auth-register__features">
               {FEATURES.map((f, i) => {
-                const Icon = f.icon;
                 return (
                   <div key={i} className="jl-auth-register__feature">
-                    <div className={`jl-auth-register__feature-icon ${f.cls}`}>
-                      <Icon size={20} />
-                    </div>
-                    <div>
+                    <div className="jl-auth-register__feature-content">
                       <h3>{f.title}</h3>
                       <p>{f.text}</p>
+                    </div>
+                    <div className="jl-auth-register__feature-img-placeholder">
+                      <span>Imagen</span>
                     </div>
                   </div>
                 );
@@ -127,10 +126,10 @@ export default function Register() {
             </div>
 
             <div className="jl-auth-register__hero-img">
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=80"
-                alt="Graduados profesionales"
-              />
+              {/* Espacio para agregar imagen */}
+              <div className="jl-auth-register__placeholder-img">
+                <span>Agregar imagen aquí</span>
+              </div>
               <div className="jl-auth-register__badge jl-auth-register__badge--tl">
                 <div className="jl-auth-register__badge-inner">
                   <TrendingUp size={16} />
@@ -205,46 +204,42 @@ export default function Register() {
 
                 {!isEmpresa && (
                   <div className="jl-auth-register__fields-grid">
-                    <Field label="Primer nombre" required icon={User}>
-                      <input data-testid="reg-first-name" value={form.first_name} onChange={set('first_name')} required placeholder="Ej. Juan" className="jl-auth-register__input" />
+                    <Field label="Nombre completo" required icon={User}>
+                      <input data-testid="reg-first-name" value={form.first_name} onChange={set('first_name')} required placeholder="Ej. Juan Carlos" className="jl-auth-register__input" />
                     </Field>
-                    <Field label="Segundo nombre" icon={User}>
-                      <input data-testid="reg-middle-name" value={form.middle_name} onChange={set('middle_name')} placeholder="Ej. Carlos (Opcional)" className="jl-auth-register__input" />
-                    </Field>
-                    <Field label="Primer apellido" required icon={User}>
-                      <input data-testid="reg-last-name" value={form.last_name} onChange={set('last_name')} required placeholder="Ej. Pérez" className="jl-auth-register__input" />
-                    </Field>
-                    <Field label="Segundo apellido" icon={User}>
-                      <input data-testid="reg-second-last-name" value={form.second_last_name} onChange={set('second_last_name')} placeholder="Ej. López (Opcional)" className="jl-auth-register__input" />
+                    <Field label="Apellidos" required icon={User}>
+                      <input data-testid="reg-last-name" value={form.last_name} onChange={set('last_name')} required placeholder="Ej. Pérez López" className="jl-auth-register__input" />
                     </Field>
                   </div>
                 )}
 
                 {!isEmpresa && (
-                  <div className="jl-auth-register__field-spacer">
+                  <div className="jl-auth-register__fields-grid">
                     <Field label="Número de celular" required icon={Phone}>
-                      <input data-testid="reg-phone" value={form.phone} onChange={set('phone')} required placeholder="+505 0000 0000" className="jl-auth-register__input" />
+                      <div className="jl-auth-register__phone-group">
+                        <select className="jl-auth-register__country-code" value="+505">
+                          <option value="+505">+505</option>
+                          <option value="+1">+1</option>
+                          <option value="+52">+52</option>
+                          <option value="+57">+57</option>
+                        </select>
+                        <input data-testid="reg-phone" value={form.phone} onChange={set('phone')} required placeholder="0000 0000" className="jl-auth-register__input jl-auth-register__input--phone" />
+                      </div>
+                    </Field>
+                    <Field label="Correo electrónico" required icon={Mail}>
+                      <input data-testid="reg-email" type="email" value={form.email} onChange={set('email')} required placeholder="tu@correo.com" className="jl-auth-register__input" />
                     </Field>
                   </div>
                 )}
 
-                <div className="jl-auth-register__field-spacer">
-                  <Field label="Correo electrónico" required icon={Mail}>
-                    <input data-testid="reg-email" type="email" value={form.email} onChange={set('email')} required placeholder="tu@correo.com" className="jl-auth-register__input" />
-                  </Field>
-                </div>
-
-                <div className="jl-auth-register__field-spacer">
+                <div className="jl-auth-register__fields-grid">
                   <Field label="Contraseña" required icon={Lock}>
                     <input data-testid="reg-password" type={showPwd ? 'text' : 'password'} value={form.password} onChange={set('password')} required minLength={8} placeholder="Mínimo 8 caracteres" className="jl-auth-register__input jl-auth-register__input--pwd" />
                     <button type="button" className="jl-auth-register__eye" onClick={() => setShowPwd(!showPwd)} aria-label={showPwd ? 'Ocultar contraseña' : 'Mostrar contraseña'}>
                       {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </Field>
-                </div>
-
-                <div className="jl-auth-register__field-spacer">
-                  <Field label="Confirmar contraseña" required icon={Lock}>
+                  <Field label="Verificar contraseña" required icon={Lock}>
                     <input data-testid="reg-confirm" type={showPwd2 ? 'text' : 'password'} value={form.confirm} onChange={set('confirm')} required placeholder="Repite tu contraseña" className="jl-auth-register__input jl-auth-register__input--pwd" />
                     <button type="button" className="jl-auth-register__eye" onClick={() => setShowPwd2(!showPwd2)} aria-label={showPwd2 ? 'Ocultar contraseña' : 'Mostrar contraseña'}>
                       {showPwd2 ? <EyeOff size={16} /> : <Eye size={16} />}
