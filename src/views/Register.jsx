@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import {
   Briefcase, Sparkles, GraduationCap, BriefcaseBusiness, Sprout, Building2,
   User, Phone, Mail, Lock, Eye, EyeOff, ArrowRight, Rocket, Users,
-  TrendingUp, ShieldCheck, Headphones, KeyRound,
+  ShieldCheck, Headphones, KeyRound,
 } from 'lucide-react';
 import '../styles/AuthRegister.css';
 
@@ -17,9 +17,59 @@ const ROLES = [
 ];
 
 const FEATURES = [
-  { icon: Briefcase, cls: 'jl-auth-register__feature-icon--blue', title: 'Encuentra oportunidades', text: 'Accede a ofertas de empleo, prácticas y proyectos que se ajusten a tu perfil.' },
-  { icon: Rocket, cls: 'jl-auth-register__feature-icon--green', title: 'Crea tu perfil profesional', text: 'Destaca tus habilidades, experiencia y logros ante empresas y reclutadores.' },
-  { icon: Users, cls: 'jl-auth-register__feature-icon--purple', title: 'Conecta y crece', text: 'Construye tu red profesional y crece junto a grandes empresas.' },
+  {
+    icon: Briefcase,
+    iconCls: 'jl-auth-register__feature-icon--blue',
+    rowCls: 'jl-auth-register__feature-row--blue',
+    title: 'Encuentra oportunidades',
+    text: 'Accede a ofertas de empleo, prácticas y proyectos que se ajusten a tu perfil.',
+    illustration: (
+      <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+        <rect x="8" y="12" width="72" height="56" rx="8" fill="#EEF0FF" stroke="#5B5CEB" strokeWidth="1.5" />
+        <circle cx="28" cy="32" r="10" stroke="#5B5CEB" strokeWidth="2" />
+        <line x1="34" y1="38" x2="44" y2="48" stroke="#5B5CEB" strokeWidth="2" strokeLinecap="round" />
+        <rect x="48" y="24" width="24" height="4" rx="2" fill="#C7CBFF" />
+        <rect x="48" y="34" width="18" height="3" rx="1.5" fill="#DDE0FF" />
+        <rect x="48" y="42" width="20" height="3" rx="1.5" fill="#DDE0FF" />
+      </svg>
+    ),
+  },
+  {
+    icon: Rocket,
+    iconCls: 'jl-auth-register__feature-icon--green',
+    rowCls: 'jl-auth-register__feature-row--green',
+    title: 'Crea tu perfil profesional',
+    text: 'Destaca tus habilidades, experiencia y logros ante empresas y reclutadores.',
+    illustration: (
+      <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+        <rect x="20" y="10" width="80" height="60" rx="10" fill="#ECFDF5" stroke="#6EE7C8" strokeWidth="1.5" />
+        <circle cx="42" cy="32" r="10" fill="#6EE7C8" opacity="0.5" />
+        <rect x="58" y="24" width="30" height="4" rx="2" fill="#A7F3D0" />
+        <rect x="58" y="34" width="22" height="3" rx="1.5" fill="#D1FAE5" />
+        <rect x="58" y="42" width="26" height="3" rx="1.5" fill="#D1FAE5" />
+        <circle cx="88" cy="52" r="8" fill="#5B5CEB" />
+        <path d="M85 52l2 2 4-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    icon: Users,
+    iconCls: 'jl-auth-register__feature-icon--purple',
+    rowCls: 'jl-auth-register__feature-row--purple',
+    title: 'Conecta y crece',
+    text: 'Construye tu red profesional y crece junto a grandes empresas.',
+    illustration: (
+      <svg viewBox="0 0 120 80" fill="none" aria-hidden="true">
+        <circle cx="40" cy="38" r="12" fill="#EEF0FF" stroke="#5B5CEB" strokeWidth="1.5" />
+        <circle cx="80" cy="38" r="12" fill="#EEF0FF" stroke="#6D5DFC" strokeWidth="1.5" />
+        <path d="M52 38h16" stroke="#5B5CEB" strokeWidth="2" strokeLinecap="round" strokeDasharray="3 3" />
+        <circle cx="60" cy="38" r="4" fill="#5B5CEB" />
+        <circle cx="28" cy="58" r="6" fill="#DDE0FF" />
+        <circle cx="60" cy="62" r="6" fill="#DDE0FF" />
+        <circle cx="92" cy="58" r="6" fill="#DDE0FF" />
+      </svg>
+    ),
+  },
 ];
 
 const TRUST = [
@@ -102,8 +152,7 @@ export default function Register() {
             </div>
 
             <h1 className="jl-auth-register__hero-title">
-              Más oportunidades,<br />
-              <span className="jl-auth-register__gradient-text">mejor futuro.</span>
+              Más oportunidades, mejor futuro.
             </h1>
             <p className="jl-auth-register__hero-desc">
               Únete a JobLink y conecta con oportunidades reales que impulsarán tu carrera profesional.
@@ -111,53 +160,30 @@ export default function Register() {
 
             <div className="jl-auth-register__features">
               {FEATURES.map((f, i) => {
+                const Icon = f.icon;
                 return (
-                  <div key={i} className="jl-auth-register__feature">
+                  <div key={i} className={`jl-auth-register__feature-row ${f.rowCls}`}>
+                    <div className={`jl-auth-register__feature-icon ${f.iconCls}`}>
+                      <Icon size={22} />
+                    </div>
                     <div className="jl-auth-register__feature-content">
                       <h3>{f.title}</h3>
                       <p>{f.text}</p>
                     </div>
-                    <div className="jl-auth-register__feature-img-placeholder">
-                      <span>Imagen</span>
+                    <div className="jl-auth-register__feature-connector" aria-hidden="true">
+                      <span className="jl-auth-register__connector-line" />
+                      <span className="jl-auth-register__connector-dot" />
+                      <span className="jl-auth-register__connector-line" />
+                    </div>
+                    <div className="jl-auth-register__feature-image">
+                      <div className="jl-auth-register__feature-image-inner">
+                        {f.illustration}
+                      </div>
+                      <span className="jl-auth-register__feature-image-label">IMAGEN SUGERIDA</span>
                     </div>
                   </div>
                 );
               })}
-            </div>
-
-            <div className="jl-auth-register__hero-img">
-              {/* Espacio para agregar imagen */}
-              <div className="jl-auth-register__placeholder-img">
-                <span>Agregar imagen aquí</span>
-              </div>
-              <div className="jl-auth-register__badge jl-auth-register__badge--tl">
-                <div className="jl-auth-register__badge-inner">
-                  <TrendingUp size={16} />
-                  <div>
-                    <div className="jl-auth-register__badge-num">+2K</div>
-                    <div className="jl-auth-register__badge-label">Ofertas activas</div>
-                  </div>
-                </div>
-              </div>
-              <div className="jl-auth-register__badge jl-auth-register__badge--tr">
-                <div className="jl-auth-register__badge-inner">
-                  <Building2 size={16} />
-                  <div>
-                    <div className="jl-auth-register__badge-num">Empresas</div>
-                    <div className="jl-auth-register__badge-label">confiables</div>
-                  </div>
-                </div>
-              </div>
-              <div className="jl-auth-register__badge jl-auth-register__badge--bc">
-                <div className="jl-auth-register__badge-inner">
-                  <Users size={16} />
-                  <div>
-                    <div className="jl-auth-register__badge-num">Miles</div>
-                    <div className="jl-auth-register__badge-label">de usuarios</div>
-                  </div>
-                </div>
-              </div>
-              <div className="jl-auth-register__hero-overlay" aria-hidden="true" />
             </div>
           </div>
 

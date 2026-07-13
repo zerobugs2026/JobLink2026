@@ -244,6 +244,117 @@ const University_User = () => {
             </div>
           </div>
 
+          {/* Opportunities Section */}
+          <div className="opportunities-hero-section">
+            <h2 className="hero-title">Más oportunidades, mejor futuro.</h2>
+            <p className="hero-subtitle">
+              Únete a JobLink y conecta con oportunidades reales que impulsarán tu carrera profesional.
+            </p>
+            
+            <div className="opportunities-layout">
+              {/* Left Column - Text Cards */}
+              <div className="left-column">
+                {/* Card 1 */}
+                <div className="text-card">
+                  <div className="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B5CEB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </div>
+                  <h3 className="text-card-title">Encuentra oportunidades</h3>
+                  <p className="text-card-description">
+                    Accede a ofertas de empleo, prácticas y proyectos que se ajusten a tu perfil.
+                  </p>
+                </div>
+
+                {/* Card 2 */}
+                <div className="text-card">
+                  <div className="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6EE7C8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </div>
+                  <h3 className="text-card-title">Crea tu perfil profesional</h3>
+                  <p className="text-card-description">
+                    Destaca tus habilidades, experiencia y logros ante empresas y reclutadores.
+                  </p>
+                </div>
+
+                {/* Card 3 */}
+                <div className="text-card">
+                  <div className="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B5CEB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <h3 className="text-card-title">Conecta y crece</h3>
+                  <p className="text-card-description">
+                    Construye tu red profesional y crece junto a grandes empresas.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column - Image Boxes */}
+              <div className="right-column">
+                {/* Image Box 1 */}
+                <div className="image-box">
+                  <div className="image-box-content">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#5B5CEB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Image Box 2 */}
+                <div className="image-box">
+                  <div className="image-box-content">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#6EE7C8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Image Box 3 */}
+                <div className="image-box">
+                  <div className="image-box-content">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#5B5CEB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Connection Lines */}
+              <div className="connection-lines">
+                <div className="connection-line">
+                  <div className="line-segment"></div>
+                  <div className="connection-dot"></div>
+                  <div className="line-segment"></div>
+                </div>
+                <div className="connection-line">
+                  <div className="line-segment"></div>
+                  <div className="connection-dot"></div>
+                  <div className="line-segment"></div>
+                </div>
+                <div className="connection-line">
+                  <div className="line-segment"></div>
+                  <div className="connection-dot"></div>
+                  <div className="line-segment"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Featured Companies Section */}
           <div className="featured-companies-section">
             <div className="section-header">
